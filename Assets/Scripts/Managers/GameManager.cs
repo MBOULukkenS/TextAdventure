@@ -1,6 +1,5 @@
 using UnityEngine;
 using Utility;
-using WM2000.Terminal;
 
 namespace Managers
 {
@@ -13,7 +12,6 @@ namespace Managers
 
         private void MainMenu()
         {
-            Terminal.Clear();
             
         }
     }

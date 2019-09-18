@@ -62,11 +62,6 @@
     <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
     <Compile Include="Assets\Scripts\Utility\Preload.cs" />
     <Compile Include="Assets\Scripts\Utility\Singleton.cs" />
-    <Compile Include="Assets\WM2000\Display\Display.cs" />
-    <Compile Include="Assets\WM2000\Keyboard\Keyboard.cs" />
-    <Compile Include="Assets\WM2000\Terminal\DisplayBuffer.cs" />
-    <Compile Include="Assets\WM2000\Terminal\InputBuffer.cs" />
-    <Compile Include="Assets\WM2000\Terminal\Terminal.cs" />
     <Compile Include="Assets\WM2000\Utility.cs" />
     <Compile Include="Assets\YCPU\YpsilonAsm\Assembler\AddressingMode.cs" />
     <Compile Include="Assets\YCPU\YpsilonAsm\Assembler\DataFieldTypes.cs" />

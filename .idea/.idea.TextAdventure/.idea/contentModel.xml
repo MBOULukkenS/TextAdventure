@@ -46,17 +46,6 @@
           </e>
         </e>
         <e p="WM2000" t="Include">
-          <e p="Display" t="Include">
-            <e p="Display.cs" t="Include" />
-          </e>
-          <e p="Keyboard" t="Include">
-            <e p="Keyboard.cs" t="Include" />
-          </e>
-          <e p="Terminal" t="Include">
-            <e p="DisplayBuffer.cs" t="Include" />
-            <e p="InputBuffer.cs" t="Include" />
-            <e p="Terminal.cs" t="Include" />
-          </e>
           <e p="Utility.cs" t="Include" />
         </e>
         <e p="YCPU" t="Include">
