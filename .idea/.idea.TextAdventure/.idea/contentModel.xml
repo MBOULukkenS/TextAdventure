@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\Stijn\.Rider2019.2\config\consoles\db" t="IncludeRecursive" />
+    <e p="C:\Users\Stijn\.Rider2019.2\config\extensions" t="IncludeRecursive" />
+    <e p="C:\Users\Stijn\.Rider2019.2\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Stijn\.Rider2019.2\system\resharper-host\local\Transient\ReSharperHost\v192\SolutionCaches\_TextAdventure.168863108.00" t="ExcludeRecursive" />
+    <e p="C:\Users\Stijn\source\repos\Unity\TextAdventure" t="IncludeRecursive">
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="Scripts" t="Include">
+          <e p="Managers" t="Include">
+            <e p="GameManager.cs" t="Include" />
+          </e>
+          <e p="Utility" t="Include">
+            <e p="Preload.cs" t="Include" />
+            <e p="Singleton.cs" t="Include" />
+          </e>
+        </e>
+        <e p="TextMesh Pro" t="Include">
+          <e p="Fonts" t="Include">
+            <e p="LiberationSans - OFL.txt" t="Include" />
+          </e>
+          <e p="Resources" t="Include">
+            <e p="LineBreaking Following Characters.txt" t="Include" />
+            <e p="LineBreaking Leading Characters.txt" t="Include" />
+            <e p="Shaders" t="Include">
+              <e p="TMP_Bitmap-Custom-Atlas.shader" t="Include" />
+              <e p="TMP_Bitmap-Mobile.shader" t="Include" />
+              <e p="TMP_Bitmap.shader" t="Include" />
+              <e p="TMP_SDF Overlay.shader" t="Include" />
+              <e p="TMP_SDF-Mobile Masking.shader" t="Include" />
+              <e p="TMP_SDF-Mobile Overlay.shader" t="Include" />
+              <e p="TMP_SDF-Mobile.shader" t="Include" />
+              <e p="TMP_SDF-Surface-Mobile.shader" t="Include" />
+              <e p="TMP_SDF-Surface.shader" t="Include" />
+              <e p="TMP_SDF.shader" t="Include" />
+              <e p="TMP_Sprite.shader" t="Include" />
+              <e p="TMPro.cginc" t="Include" />
+              <e p="TMPro_Properties.cginc" t="Include" />
+              <e p="TMPro_Surface.cginc" t="Include" />
+            </e>
+          </e>
+          <e p="Sprites" t="Include">
+            <e p="EmojiOne Attribution.txt" t="Include" />
+          </e>
+        </e>
+        <e p="WM2000" t="Include">
+          <e p="Display" t="Include">
+            <e p="Display.cs" t="Include" />
+          </e>
+          <e p="Keyboard" t="Include">
+            <e p="Keyboard.cs" t="Include" />
+          </e>
+          <e p="Terminal" t="Include">
+            <e p="DisplayBuffer.cs" t="Include" />
+            <e p="InputBuffer.cs" t="Include" />
+            <e p="Terminal.cs" t="Include" />
+          </e>
+          <e p="Utility.cs" t="Include" />
+        </e>
+        <e p="YCPU" t="Include">
+          <e p="Documentation" t="Include">
+            <e p="Hardware" t="Include">
+              <e p="cartridge.txt" t="Include" />
+              <e p="display.txt" t="Include" />
+              <e p="keyboard.txt" t="Include" />
+            </e>
+            <e p="readme.txt" t="Include" />
+            <e p="ycpu history.txt" t="Include" />
+            <e p="ycpu release.txt" t="Include" />
+            <e p="ycpu.txt" t="Include" />
+          </e>
+          <e p="YpsilonAsm" t="Include">
+            <e p="Assembler" t="Include">
+              <e p="AddressingMode.cs" t="Include" />
+              <e p="DataFieldTypes.cs" t="Include" />
+              <e p="Guard.cs" t="Include" />
+              <e p="LineSearch.cs" t="Include" />
+              <e p="OpcodeFlag.cs" t="Include" />
+              <e p="Optimizations.cs" t="Include" />
+              <e p="Param.cs" t="Include" />
+              <e p="Parser.cs" t="Include" />
+              <e p="Parser.Data.cs" t="Include" />
+              <e p="Parser.Includes.cs" t="Include" />
+              <e p="Parser.Initialize.cs" t="Include" />
+              <e p="Parser.Instructions.cs" t="Include" />
+              <e p="Parser.Labels.cs" t="Include" />
+              <e p="Parser.Output.cs" t="Include" />
+              <e p="Parser.Params.cs" t="Include" />
+              <e p="Parser.Pragmas.cs" t="Include" />
+              <e p="ParserState.cs" t="Include" />
+              <e p="Scopes.cs" t="Include" />
+            </e>
+            <e p="Common.cs" t="Include" />
+          </e>
+          <e p="YpsilonCPU" t="Include">
+            <e p="Emulation" t="Include">
+              <e p="ADevice.cs" t="Include" />
+              <e p="Devices" t="Include">
+                <e p="Graphics" t="Include">
+                  <e p="GraphicsAdapter.cs" t="Include" />
+                  <e p="GraphicsMode.cs" t="Include" />
+                </e>
+                <e p="Input" t="Include">
+                  <e p="KeyboardDevice.cs" t="Include" />
+                </e>
+                <e p="Storage" t="Include">
+                  <e p="CRW200.cs" t="Include" />
+                </e>
+              </e>
+              <e p="Emulator.cs" t="Include" />
+              <e p="IDisplayProvider.cs" t="Include" />
+              <e p="IInputProvider.cs" t="Include" />
+              <e p="IMemoryInterface.cs" t="Include" />
+              <e p="ITexture.cs" t="Include" />
+              <e p="Processor" t="Include">
+                <e p="MemoryChunk.cs" t="Include" />
+                <e p="SegFaultException.cs" t="Include" />
+                <e p="Segment.cs" t="Include" />
+                <e p="YBUS.cs" t="Include" />
+                <e p="YCPU.BitPatterns.cs" t="Include" />
+                <e p="YCPU.cs" t="Include" />
+                <e p="YCPU.Disassemblers.cs" t="Include" />
+                <e p="YCPU.Instructions.cs" t="Include" />
+                <e p="YCPU.Interrupts.cs" t="Include" />
+                <e p="YCPU.Memory.cs" t="Include" />
+                <e p="YRTC.cs" t="Include" />
+              </e>
+            </e>
+            <e p="IEmulator.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="Packages" t="ExcludeRecursive" />
+      <e p="Temp\bin" t="ExcludeRecursive" />
+      <e p="TextAdventure.sln" t="IncludeFlat" />
+    </e>
+  </component>
+</project>

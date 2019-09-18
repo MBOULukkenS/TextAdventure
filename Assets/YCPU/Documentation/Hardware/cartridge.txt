@@ -1,0 +1,81 @@
+
+                         YPSILONTECH's CRW200
+                         A data cartridge for
+                        all your storage needs
+
+    Shipping manifests. Asteroid field navigation maps. The latest software. At
+    YPSILONTECH, we know you need storage that is portable and reliable. That's
+    why you need the CRW200 - the revolutionary solid state storage device that
+    is readable, writable, and hardened against anomolous bit flips.
+
+=== On-board Buffer ============================================================
+
+    The CRW200 drive unit has an on-board 512b buffer. This buffer can be made
+    accessible to the YCPU bus by using the MMU. Note that the CRW200 has only
+    a single bank, and this bank is only 512b; this 512b of memory is mirrored
+    throughout the 16kb bank address space.
+    
+    Note also that when the drive is busy, the buffer is taken off the bus.
+    Attempting to write to the buffer while the drive is busy will fail
+    silently. Attempting to read from the buffer while the drive is busy will
+    return garbage data.
+
+=== Drive speed ================================================================
+
+    The drive can read a single 512b sector from a cartridge to its buffer in 
+    approximately 1ms.
+    
+    The drive can write a single 512b sector from its buffer to a cartridge in
+    approximately 2ms.
+
+=== Cartridge size =============================================================
+
+    The CRW200 accepts a standard cartridge with 4096 sectors. Each cartridge
+    sector holds 512 bytes. Thus, the total data capacity of a single CRW200
+    cartridge is 2,097,152 bytes, or 2 mega-bytes.
+
+=== Interfacing details ========================================================
+
+    DeviceType:     0x0003 (Storage, removable)
+    ManufacturerID: 0x0000 (Ypsilon)
+    DeviceID:       0x0200
+    DeviceRevision: 0x0009
+    
+    HWQ $02 Message:
+    
+    R1      Message
+    $00     Query state. R0 is set to state bitfield:
+            fedcba98 76543210
+            eib..... ......pm
+            e = error code nonzero.
+            i = interrupt enabled.
+            b = drive is busy.
+            p = cartridge is write protected.
+            m = cartridge present in drive.
+            
+            R2 is used to set/disable interrupt. If R2 is 0, interrupt is
+            disabled. If R2 is nonzero, interrupt is enabled. While interrupt
+            is enabled, drive will cause hardware interrupt when:
+            * Error bit goes from 0 -> 1,
+            * Busy bit goes from 1 -> 0, or 
+            * MediaPresent bit changes.
+            
+    $01     Query error code. Last error code is returned in R0. Error status
+            cleared on read.
+            0x0000 ERROR_NONE       No error since last query.
+            0x0001 ERROR_BUSY       Attempted read/write while drive busy.
+            0x0002 ERROR_NO_MEDIA   Attempted read/write without cartridge present.
+            0x0003 ERROR_PROTECTED  Attempted write to write protected cartridge.
+            0x0004 ERROR_EJECT      Cartridge removed while reading or writing.
+            0x0005 ERROR_BAD_SECTOR Requested sector is bad, data on it is lost.
+            0xffff ERROR_BROKEN     Attempted read/write failed due to hardware.
+    
+    $02     Read sector. Begin read sector index in R2 to buffer.
+            R0 is set to 0 if reading is possible and started, else set to 1 and
+            internal error code set. Reading is only possible if media is present,
+            and the drive is not busy.
+            
+    $03     Write sector. Write buffer to sector index R2.
+            R0 is set to 0 if writing is possible and started, else set to 1 and
+            internal error code set. Writing is only possible if media is present,
+            media is not write-protected, and the drive is not busy.
