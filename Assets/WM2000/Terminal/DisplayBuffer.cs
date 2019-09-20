@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,17 @@ namespace WM2000.Terminal
 
         private bool _isDirty;
         private string _cachedDisplayBuffer = string.Empty;
+
+        private bool _inputEnabled = true;
+        public bool InputEnabled
+        {
+            get => _inputEnabled;
+            set
+            {
+                _inputEnabled = value;
+                _isDirty = true;
+            }
+        }
 
         private string AllLines
         {
@@ -30,7 +42,9 @@ namespace WM2000.Terminal
         }
 
         private char Cursor => Time.time % (2 * FlashInterval) <= FlashInterval ? CursorChar1 : CursorChar2;
-        private string Prompt => "> ";
+        
+        private string _prompt = "> ";
+        private string Prompt => InputEnabled ? _prompt : string.Empty;
 
         public char CursorChar1 { get; set; } = '█';
         public char CursorChar2 { get; set; } = ' ';

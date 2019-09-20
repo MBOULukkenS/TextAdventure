@@ -2,21 +2,37 @@
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using DefaultNamespace;
 using UnityEngine;
 
 namespace WM2000.Terminal
 {
     public class Terminal : MonoBehaviour
     {
-        public delegate void ParameterizedCommandSentHandler(string command, string[] args);
+        public delegate void ParameterizedCommandSentHandler(string[] args);
         public ParameterizedCommandSentHandler CommandSent;
-
-        public char[] Separator { get; set; } = {' '};
         
         public DisplayBuffer Out { get; private set; }
         public InputBuffer In { get; private set; }
 
+        public bool InputActive
+        {
+            get => In.InputEnabled;
+            set
+            {
+                In.InputEnabled = value;
+                Out.InputEnabled = value;
+            }
+        }
+
+        public static bool PrimaryInputActive
+        {
+            get => _primaryTerminal.InputActive;
+            set => _primaryTerminal.InputActive = value;
+        }
+
         private static Terminal _primaryTerminal;
+        public static Terminal PrimaryTerminal => _primaryTerminal;
 
         private void Awake()
         {
@@ -69,12 +85,7 @@ namespace WM2000.Terminal
 
         private void OnCommandSent(string command)
         {
-            string[] commandSplit = command.Split(Separator);
-            CommandSent?.Invoke(
-                commandSplit[0], 
-                commandSplit
-                    .Where(s => s != commandSplit[0])
-                    .ToArray());
+            CommandSent?.Invoke(command.Split(Globals.Separator));
         }
     }
 }
