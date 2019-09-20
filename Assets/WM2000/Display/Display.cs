@@ -6,8 +6,7 @@ using WM2000.Terminal;
 public class Display : MonoBehaviour
 {
     [SerializeField] Terminal connectedToTerminal;
-
-    // TODO calculate these two if possible
+    
     public int DisplayWidth => 
         Mathf.FloorToInt((((RectTransform)_screenText.transform).rect.width * _screenText.pixelsPerUnit) / (_screenText.fontSize / 4));
     public int DisplayHeight => 
