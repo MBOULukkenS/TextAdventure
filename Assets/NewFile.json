@@ -1,0 +1,32 @@
+[
+	{
+		"title": "Start",
+		"tags": "",
+		"body": "ItsATest\n[[ answer: leaf|Leave ]] \n[[ answer: continu|Continue ]] ",
+		"position": {
+			"x": 668,
+			"y": 271
+		},
+		"colorID": 0
+	},
+	{
+		"title": "Continue",
+		"tags": "",
+		"body": "Empty Text",
+		"position": {
+			"x": 926,
+			"y": 487
+		},
+		"colorID": 0
+	},
+	{
+		"title": "Leave",
+		"tags": "",
+		"body": "K bye",
+		"position": {
+			"x": 492,
+			"y": 488
+		},
+		"colorID": 0
+	}
+]
