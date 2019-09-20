@@ -17,12 +17,8 @@ public class Display : MonoBehaviour
     private void Start()
     {
         _screenText = GetComponentInChildren<TextMeshProUGUI>();
-        WarnIfTerminalNotConneced();
-    }
 
-    private void WarnIfTerminalNotConneced()
-    {
-        if (!connectedToTerminal) 
+        if (!connectedToTerminal)
             Debug.LogWarning("Display not connected to a terminal");
     }
 
