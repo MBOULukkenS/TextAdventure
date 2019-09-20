@@ -59,8 +59,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Globals.cs" />
     <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
-    <Compile Include="Assets\Scripts\TerminalUI\TerminalDialogueUI.cs" />
+    <Compile Include="Assets\Scripts\TerminalUI\Wm2000DialogueUi.cs" />
+    <Compile Include="Assets\Scripts\TerminalUI\Wm2000VariableStorage.cs" />
     <Compile Include="Assets\Scripts\Utility\AsyncHelper.cs" />
     <Compile Include="Assets\Scripts\Utility\Preload.cs" />
     <Compile Include="Assets\Scripts\Utility\Singleton.cs" />
@@ -164,7 +166,6 @@
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF.shader" />
-    <None Include="Assets\NewFile.yarn.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
