@@ -60,9 +60,42 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
+    <Compile Include="Assets\Scripts\TerminalUI\TerminalDialogueUI.cs" />
     <Compile Include="Assets\Scripts\Utility\Preload.cs" />
     <Compile Include="Assets\Scripts\Utility\Singleton.cs" />
+    <Compile Include="Assets\WM2000\Display\Display.cs" />
+    <Compile Include="Assets\WM2000\Keyboard\Keyboard.cs" />
+    <Compile Include="Assets\WM2000\Terminal\DisplayBuffer.cs" />
+    <Compile Include="Assets\WM2000\Terminal\InputBuffer.cs" />
+    <Compile Include="Assets\WM2000\Terminal\Terminal.cs" />
     <Compile Include="Assets\WM2000\Utility.cs" />
+    <Compile Include="Assets\YarnSpinner\Code\Analyser.cs" />
+    <Compile Include="Assets\YarnSpinner\Code\AntlrCompiler.cs" />
+    <Compile Include="Assets\YarnSpinner\Code\Compiler.cs" />
+    <Compile Include="Assets\YarnSpinner\Code\Dialogue.cs" />
+    <Compile Include="Assets\YarnSpinner\Code\DialogueRunner.cs" />
+    <Compile Include="Assets\YarnSpinner\Code\ErrorListener.cs" />
+    <Compile Include="Assets\YarnSpinner\Code\GlobalSuppressions.cs" />
+    <Compile Include="Assets\YarnSpinner\Code\Lexer.cs" />
+    <Compile Include="Assets\YarnSpinner\Code\Library.cs" />
+    <Compile Include="Assets\YarnSpinner\Code\Loader.cs" />
+    <Compile Include="Assets\YarnSpinner\Code\Parser.cs" />
+    <Compile Include="Assets\YarnSpinner\Code\Program.cs" />
+    <Compile Include="Assets\YarnSpinner\Code\Value.cs" />
+    <Compile Include="Assets\YarnSpinner\Code\VirtualMachine.cs" />
+    <Compile Include="Assets\YarnSpinner\Code\YarnSpinnerLexer.cs" />
+    <Compile Include="Assets\YarnSpinner\Code\YarnSpinnerParser.cs" />
+    <Compile Include="Assets\YarnSpinner\Code\YarnSpinnerParserBaseListener.cs" />
+    <Compile Include="Assets\YarnSpinner\Code\YarnSpinnerParserBaseVisitor.cs" />
+    <Compile Include="Assets\YarnSpinner\Code\YarnSpinnerParserListener.cs" />
+    <Compile Include="Assets\YarnSpinner\Code\YarnSpinnerParserVisitor.cs" />
+    <Compile Include="Assets\YarnSpinner\Examples\DemoScripts\CameraFollow.cs" />
+    <Compile Include="Assets\YarnSpinner\Examples\DemoScripts\ExampleDialogueUI.cs" />
+    <Compile Include="Assets\YarnSpinner\Examples\DemoScripts\ExampleVariableStorage.cs" />
+    <Compile Include="Assets\YarnSpinner\Examples\DemoScripts\MobileOnly.cs" />
+    <Compile Include="Assets\YarnSpinner\Examples\DemoScripts\NPC.cs" />
+    <Compile Include="Assets\YarnSpinner\Examples\DemoScripts\PlayerCharacter.cs" />
+    <Compile Include="Assets\YarnSpinner\Examples\DemoScripts\SpriteSwitcher.cs" />
     <Compile Include="Assets\YCPU\YpsilonAsm\Assembler\AddressingMode.cs" />
     <Compile Include="Assets\YCPU\YpsilonAsm\Assembler\DataFieldTypes.cs" />
     <Compile Include="Assets\YCPU\YpsilonAsm\Assembler\Guard.cs" />
@@ -109,14 +142,18 @@
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\YCPU\Documentation\readme.txt" />
     <None Include="Assets\YCPU\Documentation\ycpu.txt" />
+    <None Include="Assets\YarnSpinner\Examples\DemoAssets\Space\Ship.yarn.txt" />
+    <None Include="Assets\YarnSpinner\Examples\DemoAssets\SimpleExampleScript.yarn.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
     <None Include="Assets\YCPU\Documentation\Hardware\cartridge.txt" />
+    <None Include="Assets\YarnSpinner\Examples\DemoAssets\Space\Sally.yarn.txt" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
+    <None Include="Assets\YarnSpinner\README.txt" />
     <None Include="Assets\YCPU\Documentation\Hardware\display.txt" />
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Surface.cginc" />
@@ -126,6 +163,7 @@
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF.shader" />
+    <None Include="Assets\NewFile.yarn.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
@@ -329,6 +367,15 @@
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.1.10f1/Editor/Data/UnityExtensions/Unity/TestRunner/net35/unity-custom/nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr4.Runtime.Standard">
+      <HintPath>C:/Users/Stijn/source/repos/Unity/TextAdventure/Assets/YarnSpinner/Code/Antlr4.Runtime.Standard.dll</HintPath>
+    </Reference>
+    <Reference Include="CsvHelper">
+      <HintPath>C:/Users/Stijn/source/repos/Unity/TextAdventure/Assets/YarnSpinner/Code/CsvHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>C:/Users/Stijn/source/repos/Unity/TextAdventure/Assets/YarnSpinner/Code/Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Editor">
       <HintPath>C:/Users/Stijn/source/repos/Unity/TextAdventure/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Editor.dll</HintPath>

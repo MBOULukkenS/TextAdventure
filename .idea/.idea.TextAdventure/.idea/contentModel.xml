@@ -6,11 +6,16 @@
     <e p="C:\Users\Stijn\.Rider2019.2\system\extResources" t="IncludeRecursive" />
     <e p="C:\Users\Stijn\.Rider2019.2\system\resharper-host\local\Transient\ReSharperHost\v192\SolutionCaches\_TextAdventure.168863108.00" t="ExcludeRecursive" />
     <e p="C:\Users\Stijn\source\repos\Unity\TextAdventure" t="IncludeRecursive">
+      <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="NewFile.yarn.txt" t="Include" />
         <e p="Scripts" t="Include">
           <e p="Managers" t="Include">
             <e p="GameManager.cs" t="Include" />
+          </e>
+          <e p="TerminalUI" t="Include">
+            <e p="TerminalDialogueUI.cs" t="Include" />
           </e>
           <e p="Utility" t="Include">
             <e p="Preload.cs" t="Include" />
@@ -46,7 +51,65 @@
           </e>
         </e>
         <e p="WM2000" t="Include">
+          <e p="Display" t="Include">
+            <e p="Display.cs" t="Include" />
+          </e>
+          <e p="Keyboard" t="Include">
+            <e p="Keyboard.cs" t="Include" />
+          </e>
+          <e p="Terminal" t="Include">
+            <e p="DisplayBuffer.cs" t="Include" />
+            <e p="InputBuffer.cs" t="Include" />
+            <e p="Terminal.cs" t="Include" />
+          </e>
           <e p="Utility.cs" t="Include" />
+        </e>
+        <e p="YarnSpinner" t="Include">
+          <e p="Code" t="Include">
+            <e p="Analyser.cs" t="Include" />
+            <e p="AntlrCompiler.cs" t="Include" />
+            <e p="Compiler.cs" t="Include" />
+            <e p="Dialogue.cs" t="Include" />
+            <e p="DialogueRunner.cs" t="Include" />
+            <e p="Editor" t="Include">
+              <e p="YarnSpinnerEditorWindow.cs" t="Include" />
+              <e p="YarnSpinnerTests.cs" t="Include" />
+            </e>
+            <e p="ErrorListener.cs" t="Include" />
+            <e p="GlobalSuppressions.cs" t="Include" />
+            <e p="Lexer.cs" t="Include" />
+            <e p="Library.cs" t="Include" />
+            <e p="Loader.cs" t="Include" />
+            <e p="Parser.cs" t="Include" />
+            <e p="Program.cs" t="Include" />
+            <e p="Value.cs" t="Include" />
+            <e p="VirtualMachine.cs" t="Include" />
+            <e p="YarnSpinnerLexer.cs" t="Include" />
+            <e p="YarnSpinnerParser.cs" t="Include" />
+            <e p="YarnSpinnerParserBaseListener.cs" t="Include" />
+            <e p="YarnSpinnerParserBaseVisitor.cs" t="Include" />
+            <e p="YarnSpinnerParserListener.cs" t="Include" />
+            <e p="YarnSpinnerParserVisitor.cs" t="Include" />
+          </e>
+          <e p="Examples" t="Include">
+            <e p="DemoAssets" t="Include">
+              <e p="SimpleExampleScript.yarn.txt" t="Include" />
+              <e p="Space" t="Include">
+                <e p="Sally.yarn.txt" t="Include" />
+                <e p="Ship.yarn.txt" t="Include" />
+              </e>
+            </e>
+            <e p="DemoScripts" t="Include">
+              <e p="CameraFollow.cs" t="Include" />
+              <e p="ExampleDialogueUI.cs" t="Include" />
+              <e p="ExampleVariableStorage.cs" t="Include" />
+              <e p="MobileOnly.cs" t="Include" />
+              <e p="NPC.cs" t="Include" />
+              <e p="PlayerCharacter.cs" t="Include" />
+              <e p="SpriteSwitcher.cs" t="Include" />
+            </e>
+          </e>
+          <e p="readme.txt" t="Include" />
         </e>
         <e p="YCPU" t="Include">
           <e p="Documentation" t="Include">
