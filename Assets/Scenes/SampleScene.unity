@@ -263,6 +263,16 @@ PrefabInstance:
       propertyPath: m_enableWordWrapping
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 224567467657228926, guid: c46548f7b668a78409fa399c095e4e6b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -50
+      objectReference: {fileID: 0}
+    - target: {fileID: 224870068941547836, guid: c46548f7b668a78409fa399c095e4e6b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -50
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c46548f7b668a78409fa399c095e4e6b, type: 3}
 --- !u!1 &1014050158 stripped
@@ -283,7 +293,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46b222d1ab1949198611eedc8de41c93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WordsPerMinute: 120
+  TypingInterval: 75
+  LineInterval: 250
+  TypingIntervalJitter: 0.2
+  DialogueFinishedMessage: Spel afgelopen. Druk op ESC om over nieuw te beginnen.
 --- !u!114 &1014050160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -296,10 +309,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bec29c0a230741bdac901dba8da47ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sourceText: []
+  sourceText:
+  - {fileID: 4900000, guid: c76d734350cdfe74f834346146ccf820, type: 3}
   stringGroups: []
   shouldOverrideLanguage: 0
-  overrideLanguage: 10
+  overrideLanguage: 9
   variableStorage: {fileID: 1014050161}
   dialogueUI: {fileID: 1014050159}
   startNode: Start
