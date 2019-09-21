@@ -104,9 +104,9 @@ namespace TerminalUI
             try
             {
                 KeyValuePair<int, string[]> result =
-                    _currentOptions.First(kvp => kvp.Key == choiceInt || kvp.Value[0] == args[0]);
+                    _currentOptions.First(kvp => kvp.Key == choiceInt || kvp.Value.IsEqual(args));
                 
-                ChooseOption(result.Key);
+                ChooseOption(result.Key - 1);
             }
             catch (Exception e)
             {
@@ -116,7 +116,7 @@ namespace TerminalUI
 
         public void ChooseOption(int option)
         {
-            _setCurrentOption?.Invoke(option - 1);
+            _setCurrentOption?.Invoke(option);
             
             _currentOptions.Clear();
             _setCurrentOption = null;
