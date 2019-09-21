@@ -1,0 +1,42 @@
+[
+	{
+		"title": "Start",
+		"tags": "",
+		"body": "Welcome to this test\n\n[[Shortcut test|ShortcutTest]]\n[[Conditional test|ConditionalTest]]\n[[Exit|Exit]]",
+		"position": {
+			"x": 607,
+			"y": 277
+		},
+		"colorID": 0
+	},
+	{
+		"title": "ShortcutTest",
+		"tags": "",
+		"body": "Shortcut tests\n\n-> Shortcut option 1\n    This is option one\n\n-> Shortcut option 2\n    -> multiple options!\n        Awesome\n    -> Option two\n        Cool\n    -> Option three\n        Feh\n\n[[Start]]",
+		"position": {
+			"x": 727,
+			"y": 57
+		},
+		"colorID": 0
+	},
+	{
+		"title": "ConditionalTest",
+		"tags": "",
+		"body": "<<print $sanic>>\n[[Start]]",
+		"position": {
+			"x": 947,
+			"y": 57
+		},
+		"colorID": 0
+	},
+	{
+		"title": "Exit",
+		"tags": "",
+		"body": "Okeh bye\n<<finish>>",
+		"position": {
+			"x": 1167,
+			"y": 57
+		},
+		"colorID": 0
+	}
+]
