@@ -10,5 +10,12 @@ namespace Utility
         {
             return other.Length == array.Length && array.All(other.Contains);
         }
+
+        public static bool IsEqual<T>(this IEnumerable<T> enumerable, IEnumerable<T> other)
+        {
+            return enumerable
+                .ToArray()
+                .IsEqual(other.ToArray());
+        }
     }
 }
