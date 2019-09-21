@@ -22,7 +22,6 @@ public class Keyboard : MonoBehaviour
             
             _lastTimePressed = Time.time;
             return true;
-
         }
     }
 
