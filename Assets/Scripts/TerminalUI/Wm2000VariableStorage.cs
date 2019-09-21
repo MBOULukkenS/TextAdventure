@@ -26,11 +26,14 @@ namespace TerminalUI
 
         /// Our list of default variables, for debugging.
         public DefaultVariable[] defaultVariables;
+        
+        public static Wm2000VariableStorage Instance { get; private set; }
 
         /// Reset to our default values when the game starts
         void Awake()
         {
             ResetToDefaults();
+            Instance = this;
         }
 
         /// Erase all variables and reset to default values

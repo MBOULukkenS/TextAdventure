@@ -18,15 +18,25 @@ namespace TerminalUI
         private OptionChooser _setCurrentOption;
         private Dictionary<int, string[]> _currentOptions = new Dictionary<int, string[]>();
 
+        private IEnumerable<Commands.Command> _commands;
+
         public int TypingInterval = 100;
         public int LineInterval = 250;
 
         public float TypingIntervalJitter = 0.2f;
         
         public string DialogueFinishedMessage = "Spel afgelopen. Druk op ESC om over nieuw te beginnen.";
+        
+        public string OptionsText = "Opties";
+        public string OptionText = "Optie";
+        
+        public static Wm2000DialogueUi Instance { get; private set; }
 
         private void Start()
         {
+            _commands = ReflectionHelper.GetDerivingInstances<Commands.Command>();
+            Instance = this;
+            
             Terminal.PrimaryTerminal.CommandSent += OnCommandSent;
         }
 
@@ -47,16 +57,15 @@ namespace TerminalUI
             
             Terminal.Separator();
 
-            yield return TypeLine("Opties:");
+            yield return TypeLine($"{OptionsText}:");
             
             int i = 1;
             foreach (string optionString in optionsCollection.options)
             {
                 _currentOptions.Add(i, optionString
-                    .ToLower()
                     .Split(Globals.Separator));
 
-                yield return TypeLine($"Optie {i}: '{optionString}'");
+                yield return TypeLine($"{OptionText} {i}: '{optionString}'");
                 yield return new WaitForSeconds(LineInterval / 1000f);
                 i++;
             }
@@ -88,7 +97,26 @@ namespace TerminalUI
 
         public override IEnumerator RunCommand(Command command)
         {
-            Debug.Log($"Command: '{command.text}'");
+            string[] args = command.text.Split(Globals.Separator);
+
+            try
+            {
+                Commands.Command commandToExecute = _commands
+                    .First(c => c
+                        .GetType().Name
+                        .ToLower()
+                        .Equals($"{args[0].ToLower()}command", StringComparison.CurrentCultureIgnoreCase)
+                    );
+                
+                commandToExecute.Run(args
+                    .Skip(1)
+                    .ToArray());
+            }
+            catch (Exception e)
+            {
+                Debug.LogWarning($"Command: '{args[0]}' not found!");
+                yield break;
+            }
 
             yield break;
         }
@@ -99,12 +127,13 @@ namespace TerminalUI
                 return;
             
             int.TryParse(args[0], out int choiceInt);
-            args = args.Select(s => s.ToLower()).ToArray();
 
             try
             {
                 KeyValuePair<int, string[]> result =
-                    _currentOptions.First(kvp => kvp.Key == choiceInt || kvp.Value.IsEqual(args));
+                    _currentOptions.First(kvp => kvp.Key == choiceInt || kvp.Value
+                                                     .Select(s => s.ToLower())
+                                                     .IsEqual(args));
                 
                 ChooseOption(result.Key - 1);
             }
