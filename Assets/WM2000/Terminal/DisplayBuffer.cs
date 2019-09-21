@@ -123,13 +123,11 @@ namespace WM2000.Terminal
             for (int i = lines.Length - 1; i >= 0; i--)
             {
                 if (rowCount > height)
-                {
                     return output;
-                }
-                if (lines[i] == '\n')
-                {
+                
+                if (lines[i] == '\n') 
                     rowCount++;
-                }
+                
                 output = lines[i] + output;
             }
             return output;
