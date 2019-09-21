@@ -31,6 +31,9 @@ namespace WM2000.Terminal
             set => _primaryTerminal.InputActive = value;
         }
 
+        private int _height;
+        private int _width;
+
         private static Terminal _primaryTerminal;
         public static Terminal PrimaryTerminal => _primaryTerminal;
 
@@ -47,6 +50,9 @@ namespace WM2000.Terminal
 
         public string GetDisplayBuffer(int width, int height)
         {
+            _height = height;
+            _width = width;
+            
             return Out.GetDisplayBuffer(width, height);
         }
 
@@ -68,6 +74,11 @@ namespace WM2000.Terminal
         public static void WriteLine()
         {
             _primaryTerminal.Out.WriteLine(string.Empty);
+        }
+
+        public static void Separator(char separatorChar = '-')
+        {
+            WriteLine(new string(separatorChar, _primaryTerminal._width - 2));
         }
 
         public static void Write(string line)
