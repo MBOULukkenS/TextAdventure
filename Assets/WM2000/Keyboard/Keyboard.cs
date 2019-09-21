@@ -8,18 +8,30 @@ public class Keyboard : MonoBehaviour
     [SerializeField] AudioClip[] keyStrokeSounds;
     [SerializeField] Terminal connectedToTerminal;
 
+    public int SoundMinimalInterval = 50;
+    
     AudioSource _audioSource;
+    private float _lastTimePressed = 0;
+
+    private bool ShouldPlayKeyboardSound
+    {
+        get
+        {
+            if (Time.time < _lastTimePressed + (SoundMinimalInterval / 1000f)) 
+                return false;
+            
+            _lastTimePressed = Time.time;
+            return true;
+
+        }
+    }
 
     private void Start()
     {
         _audioSource = GetComponent<AudioSource>();
         QualitySettings.vSyncCount = 0; // No V-Sync so Update() not held back by render
         Application.targetFrameRate = 1000; // To minimise delay playing key sounds
-        WarnIfTerminalNotConneced();
-    }
 
-    private void WarnIfTerminalNotConneced()
-    {
         if (!connectedToTerminal) 
             Debug.LogWarning("Keyboard not connected to a terminal");
     }
@@ -33,9 +45,11 @@ public class Keyboard : MonoBehaviour
 
         if (connectedToTerminal) 
             connectedToTerminal.ReceiveFrameInput(Input.inputString);
-        
-        if (Terminal.InputBufferCharCount > 0) 
+
+        if (Terminal.InputBufferCharCount > 0 && ShouldPlayKeyboardSound)
+        {
             PlayRandomSound();
+        }
     }
 
     private void PlayRandomSound()
