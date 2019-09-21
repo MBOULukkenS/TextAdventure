@@ -9,6 +9,7 @@ using Utility;
 using WM2000.Terminal;
 using Yarn;
 using Yarn.Unity;
+using Random = System.Random;
 
 namespace TerminalUI
 {
@@ -17,7 +18,11 @@ namespace TerminalUI
         private OptionChooser _setCurrentOption;
         private Dictionary<int, string[]> _currentOptions = new Dictionary<int, string[]>();
 
-        public int TypingInterval = 250;
+        public int TypingInterval = 100;
+        public int LineInterval = 250;
+
+        public float TypingIntervalJitter = 0.2f;
+        
         public string DialogueFinishedMessage = "Spel afgelopen. Druk op ESC om over nieuw te beginnen.";
 
         private void Start()
@@ -30,6 +35,7 @@ namespace TerminalUI
             Terminal.PrimaryInputActive = false;
 
             yield return TypeLine(line.text);
+            yield return new WaitForSeconds(LineInterval / 1000f);
 
             Terminal.PrimaryInputActive = true;
         }
@@ -39,6 +45,10 @@ namespace TerminalUI
             _setCurrentOption = optionChooser;
             Terminal.PrimaryInputActive = false;
             
+            Terminal.Separator();
+
+            yield return TypeLine("Opties:");
+            
             int i = 1;
             foreach (string optionString in optionsCollection.options)
             {
@@ -47,8 +57,11 @@ namespace TerminalUI
                     .Split(Globals.Separator));
 
                 yield return TypeLine($"Optie {i}: '{optionString}'");
+                yield return new WaitForSeconds(LineInterval / 1000f);
                 i++;
             }
+            
+            Terminal.Separator();
 
             Terminal.PrimaryInputActive = true;
 
@@ -62,8 +75,15 @@ namespace TerminalUI
             
             Terminal.WriteLine();
             yield return TypeLine(DialogueFinishedMessage);
-
-            yield return base.DialogueComplete();
+            
+            while (Input.GetKeyDown(KeyCode.Escape) == false) {
+                yield return null;
+            }
+            
+            Terminal.ClearScreen();
+            GameObject.Find("WM2000")
+                .GetComponent<DialogueRunner>()
+                .StartDialogue();
         }
 
         public override IEnumerator RunCommand(Command command)
@@ -84,11 +104,11 @@ namespace TerminalUI
             try
             {
                 KeyValuePair<int, string[]> result =
-                    _currentOptions.First(kvp => kvp.Key == choiceInt || kvp.Value == args);
+                    _currentOptions.First(kvp => kvp.Key == choiceInt || kvp.Value[0] == args[0]);
                 
                 ChooseOption(result.Key);
             }
-            catch
+            catch (Exception e)
             {
                 Terminal.WriteLine($"Invalid choice '{args[0]}'!");
             }
@@ -96,7 +116,9 @@ namespace TerminalUI
 
         public void ChooseOption(int option)
         {
-            _setCurrentOption?.Invoke(option);
+            _setCurrentOption?.Invoke(option - 1);
+            
+            _currentOptions.Clear();
             _setCurrentOption = null;
         }
 
@@ -114,7 +136,10 @@ namespace TerminalUI
             foreach (char character in text)
             {
                 Terminal.Write(character.ToString());
-                yield return new WaitForSeconds(TypingInterval / 1000f);
+                yield return new WaitForSeconds(
+                    UnityEngine.Random.Range(
+                        TypingInterval - (TypingInterval * TypingIntervalJitter),
+                        TypingInterval + (TypingInterval * TypingIntervalJitter)) / 1000f);
             }
 
             Terminal.PrimaryInputActive = inputEnabled;
