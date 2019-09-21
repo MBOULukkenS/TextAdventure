@@ -20,6 +20,7 @@
           </e>
           <e p="Utility" t="Include">
             <e p="AsyncHelper.cs" t="Include" />
+            <e p="Extensions.cs" t="Include" />
             <e p="Preload.cs" t="Include" />
             <e p="Singleton.cs" t="Include" />
           </e>
