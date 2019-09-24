@@ -22,7 +22,7 @@
 	{
 		"title": "ConditionalTest",
 		"tags": "",
-		"body": "<<print $sanic>>\n[[Start]]",
+		"body": "<<type $sanic>>\n[[Start]]",
 		"position": {
 			"x": 947,
 			"y": 57
