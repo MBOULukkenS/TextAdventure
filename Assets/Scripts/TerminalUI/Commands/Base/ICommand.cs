@@ -1,7 +1,9 @@
+using System.Collections;
+
 namespace TerminalUI.Commands
 {
     public interface ICommand
     {
-        void Run(params string[] args);
+        IEnumerator Run(params string[] args);
     }
 }
