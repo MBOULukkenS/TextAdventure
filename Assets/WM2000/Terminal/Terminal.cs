@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -30,6 +31,8 @@ namespace WM2000.Terminal
             get => _primaryTerminal.InputActive;
             set => _primaryTerminal.InputActive = value;
         }
+
+        public History History { get; private set; }
 
         private int _height;
         private int _width;
