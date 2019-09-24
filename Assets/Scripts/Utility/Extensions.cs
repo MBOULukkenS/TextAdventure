@@ -17,5 +17,10 @@ namespace Utility
                 .ToArray()
                 .IsEqual(other.ToArray());
         }
+
+        public static string ToActualString(this IEnumerable<char> enumerable)
+        {
+            return new string(enumerable.ToArray());
+        }
     }
 }
