@@ -42,7 +42,7 @@ namespace TerminalUI
             _commands = ReflectionHelper.GetDerivingInstances<Commands.Command>();
             Instance = this;
             
-            Terminal.PrimaryTerminal.CommandSent += OnCommandSent;
+            Terminal.PrimaryTerminal.CommandSent += OnInputReceived;
         }
 
         public override IEnumerator RunLine(Line line)
@@ -60,22 +60,31 @@ namespace TerminalUI
             _setCurrentOption = optionChooser;
             Terminal.PrimaryInputActive = false;
             
-            Terminal.Separator();
-
-            yield return TypeLine($"{OptionsText}:");
-            
             int i = 1;
             foreach (string optionString in optionsCollection.options)
             {
                 _currentOptions.Add(i, optionString
                     .Split(Globals.Separator));
-
-                yield return TypeLine($"{OptionText} {i}: '{optionString}'");
-                yield return new WaitForSeconds(LineInterval / 1000f);
                 i++;
             }
             
-            Terminal.Separator();
+            Terminal.PrintSeparator();
+            
+            if (DisplayOptions)
+            {
+                yield return TypeLine($"{OptionsText}:");
+
+                i = 1;
+                foreach (KeyValuePair<int, string[]> option in _currentOptions)
+                {
+                    yield return TypeLine(
+                        $"{OptionText} {i}: '{string.Join(Globals.Separator.ToActualString(), option.Value)}'");
+                    yield return new WaitForSeconds(LineInterval / 1000f);
+                    i++;
+                }
+
+                Terminal.PrintSeparator();
+            }
 
             Terminal.PrimaryInputActive = true;
 
@@ -126,12 +135,15 @@ namespace TerminalUI
             yield break;
         }
 
-        private void OnCommandSent(string[] args)
+        private void OnInputReceived(string[] args)
         {
             if (_setCurrentOption == null)
                 return;
-            
-            int.TryParse(args[0], out int choiceInt);
+
+            if (!AllowNumberInput || !int.TryParse(args[0], out int choiceInt))
+                choiceInt = -1;
+
+            args = args.Select(s => s.ToLower()).ToArray();
 
             try
             {
@@ -144,7 +156,8 @@ namespace TerminalUI
             }
             catch (Exception e)
             {
-                Terminal.WriteLine($"Invalid choice '{args[0]}'!");
+                if (!string.IsNullOrEmpty(InvalidChoiceText))
+                    Terminal.WriteLine($"{InvalidChoiceText.Replace("[command]", string.Join(Globals.Separator.ToActualString(), args))}");
             }
         }
 
