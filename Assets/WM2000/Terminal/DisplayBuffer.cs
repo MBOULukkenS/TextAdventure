@@ -85,9 +85,8 @@ namespace WM2000.Terminal
 
         public string GetDisplayBuffer(int width, int height)
         {
-            string wrappedLines = Wrap(width, AllLines);
-
-            return CutViewport(height, wrappedLines);
+            //string wrappedLines = Wrap(width, AllLines);
+            return CutViewport(height, AllLines);
         }
 
         private string Wrap(int width, string str)
