@@ -258,10 +258,45 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7525001522866024614, guid: c46548f7b668a78409fa399c095e4e6b,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 580
+      objectReference: {fileID: 0}
+    - target: {fileID: 7525001522866024614, guid: c46548f7b668a78409fa399c095e4e6b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -75
+      objectReference: {fileID: 0}
+    - target: {fileID: 7525001522866024614, guid: c46548f7b668a78409fa399c095e4e6b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 45
+      objectReference: {fileID: 0}
     - target: {fileID: 6551091894075771493, guid: c46548f7b668a78409fa399c095e4e6b,
         type: 3}
       propertyPath: m_enableWordWrapping
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6551091894075771493, guid: c46548f7b668a78409fa399c095e4e6b,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 6551091894075771493, guid: c46548f7b668a78409fa399c095e4e6b,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 6551091894075771493, guid: c46548f7b668a78409fa399c095e4e6b,
+        type: 3}
+      propertyPath: m_overflowMode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6551091894075771493, guid: c46548f7b668a78409fa399c095e4e6b,
+        type: 3}
+      propertyPath: m_textAlignment
+      value: 1025
       objectReference: {fileID: 0}
     - target: {fileID: 224567467657228926, guid: c46548f7b668a78409fa399c095e4e6b,
         type: 3}
@@ -272,6 +307,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -50
+      objectReference: {fileID: 0}
+    - target: {fileID: 114605418127070900, guid: c46548f7b668a78409fa399c095e4e6b,
+        type: 3}
+      propertyPath: SoundMinimalInterval
+      value: 75
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c46548f7b668a78409fa399c095e4e6b, type: 3}
@@ -293,10 +333,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46b222d1ab1949198611eedc8de41c93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TypingInterval: 75
+  TypingInterval: 50
   LineInterval: 250
   TypingIntervalJitter: 0.2
+  DisplayOptions: 1
+  AllowNumberInput: 0
+  OptionsText: Opties
+  OptionText: Optie
   DialogueFinishedMessage: Spel afgelopen. Druk op ESC om over nieuw te beginnen.
+  InvalidChoiceText: I dont know how to
 --- !u!114 &1014050160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -310,7 +355,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sourceText:
-  - {fileID: 4900000, guid: c76d734350cdfe74f834346146ccf820, type: 3}
+  - {fileID: 4900000, guid: e1fdfb68baa36294b9812f74bc40d6aa, type: 3}
   stringGroups: []
   shouldOverrideLanguage: 0
   overrideLanguage: 9
@@ -333,5 +378,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultVariables:
   - name: sanic
-    value: 1337
+    value: 31337
     type: 0
