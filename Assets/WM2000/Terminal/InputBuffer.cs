@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 
 namespace WM2000.Terminal
 {
@@ -17,7 +16,7 @@ namespace WM2000.Terminal
             if (!InputEnabled)
                 return;
             
-            foreach (char c in input) 
+            foreach (char c in input)
                 UpdateCurrentInputLine(c);
         }
 
@@ -34,12 +33,19 @@ namespace WM2000.Terminal
 
         private void UpdateCurrentInputLine(char c)
         {
-            if (c == '\b')
-                DeleteCharacters();
-            else if (c == '\n' || c == '\r')
-                SendCommand(_currentInputLine);
-            else
-                _currentInputLine += c;
+            switch (c)
+            {
+                case '\b':
+                    DeleteCharacters();;
+                    break;
+                case '\r':
+                case '\n':
+                    SendCommand(_currentInputLine);
+                    break;
+                default:
+                    _currentInputLine += c;
+                    break;
+            }
         }
 
         private void DeleteCharacters(int count = 1)
