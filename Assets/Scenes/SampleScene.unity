@@ -341,7 +341,7 @@ MonoBehaviour:
   OptionsText: Opties
   OptionText: Optie
   DialogueFinishedMessage: Spel afgelopen. Druk op ESC om over nieuw te beginnen.
-  InvalidChoiceText: I dont know how to
+  InvalidChoiceText: I dont know how to [command]
 --- !u!114 &1014050160
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -33,7 +33,7 @@ namespace TerminalUI
 
         [Header("Strings")]
         public string DialogueFinishedMessage = "Spel afgelopen. Druk op ESC om over nieuw te beginnen.";
-        public string InvalidChoiceText = "I dont know how to";
+        public string InvalidChoiceText = "I dont know how to [command]";
         
         public static Wm2000DialogueUi Instance { get; private set; }
 
