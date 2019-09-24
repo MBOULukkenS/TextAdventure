@@ -12,7 +12,7 @@
 	{
 		"title": "ShortcutTest",
 		"tags": "",
-		"body": "Shortcut tests\n\n-> Shortcut option 1\n    This is option one\n\n-> Shortcut option 2\n    -> multiple options!\n        Awesome\n    -> Option two\n        Cool\n    -> Option three\n        Feh\n\n[[Start]]",
+		"body": "Shortcut tests\n\n->Shortcut option 1\n    This is option one\n\n->Shortcut option 2\n    ->multiple options!\n        Awesome\n    ->Option two\n        Cool\n    ->Option three\n        Feh\n\n[[Start]]",
 		"position": {
 			"x": 727,
 			"y": 57
