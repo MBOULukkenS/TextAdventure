@@ -76,7 +76,7 @@ namespace WM2000.Terminal
             _primaryTerminal.Out.WriteLine(string.Empty);
         }
 
-        public static void Separator(char separatorChar = '-')
+        public static void PrintSeparator(char separatorChar = '-')
         {
             WriteLine(new string(separatorChar, _primaryTerminal._width - 2));
         }
