@@ -8,9 +8,11 @@ public class Display : MonoBehaviour
     [SerializeField] Terminal connectedToTerminal;
     
     public int DisplayWidth => 
-        Mathf.FloorToInt((((RectTransform)_screenText.transform).rect.width * _screenText.pixelsPerUnit) / (_screenText.fontSize / 4));
+        Mathf.FloorToInt((((RectTransform)_screenText.transform).rect.width * _screenText.pixelsPerUnit) 
+                         / (_screenText.fontSize * _screenText.pixelsPerUnit));
     public int DisplayHeight => 
-        Mathf.FloorToInt((((RectTransform)_screenText.transform).rect.height * _screenText.pixelsPerUnit) / (_screenText.fontSize / 2));
+        Mathf.FloorToInt((((RectTransform)_screenText.transform).rect.height * _screenText.pixelsPerUnit) 
+                         / (_screenText.fontSize * _screenText.pixelsPerUnit));
 
     private TextMeshProUGUI _screenText;
 
