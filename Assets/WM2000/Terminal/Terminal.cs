@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -12,6 +13,10 @@ namespace WM2000.Terminal
     {
         public delegate void ParameterizedCommandSentHandler(string[] args);
         public ParameterizedCommandSentHandler CommandSent;
+        
+        [Header("Typing settings")]
+        public int TypingInterval = 100;
+        public float TypingIntervalJitter = 0.2f;
         
         public DisplayBuffer Out { get; private set; }
         public InputBuffer In { get; private set; }
@@ -93,6 +98,31 @@ namespace WM2000.Terminal
         {
             _primaryTerminal.Out.CursorChar1 = active;
             _primaryTerminal.Out.CursorChar2 = inactive;
+        }
+        
+        public static IEnumerator TypeLine(string text)
+        {
+            yield return Type(text);
+            WriteLine();
+        }
+
+        public static IEnumerator Type(string text)
+        {
+            bool inputEnabled = PrimaryInputActive;
+            PrimaryInputActive = false;
+            
+            foreach (char character in text)
+            {
+                Write(character.ToString());
+                yield return new WaitForSeconds(
+                    UnityEngine.Random.Range(
+                        _primaryTerminal.TypingInterval 
+                            - (_primaryTerminal.TypingInterval * _primaryTerminal.TypingIntervalJitter),
+                        _primaryTerminal.TypingInterval 
+                            + (_primaryTerminal.TypingInterval * _primaryTerminal.TypingIntervalJitter)) / 1000f);
+            }
+
+            PrimaryInputActive = inputEnabled;
         }
 
         public static int InputBufferCharCount => _primaryTerminal.In.GetCurrentInputLine().Length;

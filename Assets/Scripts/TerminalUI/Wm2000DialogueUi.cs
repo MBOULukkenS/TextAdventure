@@ -20,16 +20,12 @@ namespace TerminalUI
 
         private IEnumerable<Commands.Command> _commands;
 
-        [Header("Typing settings")]
-        public int TypingInterval = 100;
-        public int LineInterval = 250;
-        public float TypingIntervalJitter = 0.2f;
-
-        [Header("Option Settings")]
+        [Header("Settings")]
         public bool DisplayOptions = true;
         public bool AllowNumberInput = true;
         public string OptionsText = "Opties";
         public string OptionText = "Optie";
+        public int LineInterval = 250;
 
         [Header("Strings")]
         public string DialogueFinishedMessage = "Spel afgelopen. Druk op ESC om over nieuw te beginnen.";
@@ -49,7 +45,7 @@ namespace TerminalUI
         {
             Terminal.PrimaryInputActive = false;
 
-            yield return TypeLine(line.text);
+            yield return Terminal.TypeLine(line.text);
             yield return new WaitForSeconds(LineInterval / 1000f);
 
             Terminal.PrimaryInputActive = true;
@@ -72,12 +68,12 @@ namespace TerminalUI
             
             if (DisplayOptions)
             {
-                yield return TypeLine($"{OptionsText}:");
+                yield return Terminal.TypeLine($"{OptionsText}:");
 
                 i = 1;
                 foreach (KeyValuePair<int, string[]> option in _currentOptions)
                 {
-                    yield return TypeLine(
+                    yield return Terminal.TypeLine(
                         $"{OptionText} {i}: '{string.Join(Globals.Separator.ToActualString(), option.Value)}'");
                     yield return new WaitForSeconds(LineInterval / 1000f);
                     i++;
@@ -97,12 +93,11 @@ namespace TerminalUI
             Terminal.PrimaryInputActive = false;
             
             Terminal.WriteLine();
-            yield return TypeLine(DialogueFinishedMessage);
+            yield return Terminal.TypeLine(DialogueFinishedMessage);
             
-            while (Input.GetKeyDown(KeyCode.Escape) == false) {
+            while (Input.GetKeyDown(KeyCode.Escape) == false)
                 yield return null;
-            }
-            
+
             Terminal.ClearScreen();
             GameObject.Find("WM2000")
                 .GetComponent<DialogueRunner>()
@@ -112,27 +107,26 @@ namespace TerminalUI
         public override IEnumerator RunCommand(Command command)
         {
             string[] args = command.text.Split(Globals.Separator);
+            Commands.Command commandToExecute;
 
             try
             {
-                Commands.Command commandToExecute = _commands
+                commandToExecute = _commands
                     .First(c => c
                         .GetType().Name
                         .ToLower()
                         .Equals($"{args[0].ToLower()}command", StringComparison.CurrentCultureIgnoreCase)
                     );
-                
-                commandToExecute.Run(args
-                    .Skip(1)
-                    .ToArray());
             }
             catch (Exception e)
             {
                 Debug.LogWarning($"Command: '{args[0]}' not found!");
                 yield break;
             }
-
-            yield break;
+            
+            yield return commandToExecute.Run(args
+                .Skip(1)
+                .ToArray());
         }
 
         private void OnInputReceived(string[] args)
@@ -167,29 +161,6 @@ namespace TerminalUI
             
             _currentOptions.Clear();
             _setCurrentOption = null;
-        }
-
-        private IEnumerator TypeLine(string text)
-        {
-            yield return Type(text);
-            Terminal.WriteLine();
-        }
-
-        private IEnumerator Type(string text)
-        {
-            bool inputEnabled = Terminal.PrimaryInputActive;
-            Terminal.PrimaryInputActive = false;
-            
-            foreach (char character in text)
-            {
-                Terminal.Write(character.ToString());
-                yield return new WaitForSeconds(
-                    UnityEngine.Random.Range(
-                        TypingInterval - (TypingInterval * TypingIntervalJitter),
-                        TypingInterval + (TypingInterval * TypingIntervalJitter)) / 1000f);
-            }
-
-            Terminal.PrimaryInputActive = inputEnabled;
         }
     }
 }
