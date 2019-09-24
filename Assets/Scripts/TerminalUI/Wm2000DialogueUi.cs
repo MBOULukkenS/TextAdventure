@@ -20,15 +20,20 @@ namespace TerminalUI
 
         private IEnumerable<Commands.Command> _commands;
 
+        [Header("Typing settings")]
         public int TypingInterval = 100;
         public int LineInterval = 250;
-
         public float TypingIntervalJitter = 0.2f;
-        
-        public string DialogueFinishedMessage = "Spel afgelopen. Druk op ESC om over nieuw te beginnen.";
-        
+
+        [Header("Option Settings")]
+        public bool DisplayOptions = true;
+        public bool AllowNumberInput = true;
         public string OptionsText = "Opties";
         public string OptionText = "Optie";
+
+        [Header("Strings")]
+        public string DialogueFinishedMessage = "Spel afgelopen. Druk op ESC om over nieuw te beginnen.";
+        public string InvalidChoiceText = "I dont know how to";
         
         public static Wm2000DialogueUi Instance { get; private set; }
 
