@@ -65,6 +65,7 @@
     <Compile Include="Assets\Scripts\TerminalUI\Commands\Base\ICommand.cs" />
     <Compile Include="Assets\Scripts\TerminalUI\Commands\FinishCommand.cs" />
     <Compile Include="Assets\Scripts\TerminalUI\Commands\PrintCommand.cs" />
+    <Compile Include="Assets\Scripts\TerminalUI\Commands\TypeCommand.cs" />
     <Compile Include="Assets\Scripts\TerminalUI\Wm2000DialogueUi.cs" />
     <Compile Include="Assets\Scripts\TerminalUI\Wm2000VariableStorage.cs" />
     <Compile Include="Assets\Scripts\Utility\AsyncHelper.cs" />
