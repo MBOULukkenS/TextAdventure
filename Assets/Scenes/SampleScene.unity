@@ -313,6 +313,11 @@ PrefabInstance:
       propertyPath: SoundMinimalInterval
       value: 75
       objectReference: {fileID: 0}
+    - target: {fileID: 114578242904794280, guid: c46548f7b668a78409fa399c095e4e6b,
+        type: 3}
+      propertyPath: TypingInterval
+      value: 60
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c46548f7b668a78409fa399c095e4e6b, type: 3}
 --- !u!1 &1014050158 stripped
@@ -333,13 +338,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46b222d1ab1949198611eedc8de41c93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TypingInterval: 50
-  LineInterval: 250
-  TypingIntervalJitter: 0.2
   DisplayOptions: 1
   AllowNumberInput: 0
   OptionsText: Opties
   OptionText: Optie
+  LineInterval: 250
   DialogueFinishedMessage: Spel afgelopen. Druk op ESC om over nieuw te beginnen.
   InvalidChoiceText: I dont know how to [command]
 --- !u!114 &1014050160
@@ -378,5 +381,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultVariables:
   - name: sanic
-    value: 31337
-    type: 0
+    value: This is a default variable.
+    type: 1
