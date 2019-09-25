@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using DefaultNamespace;
 
 namespace Utility
 {
@@ -21,6 +22,11 @@ namespace Utility
         public static string ToActualString(this IEnumerable<char> enumerable)
         {
             return new string(enumerable.ToArray());
+        }
+
+        public static string Combine(this IEnumerable<string> enumerable)
+        {
+            return string.Join(Globals.Separator.ToActualString(), enumerable);
         }
     }
 }
