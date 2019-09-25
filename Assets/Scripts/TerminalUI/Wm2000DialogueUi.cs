@@ -64,8 +64,7 @@ namespace TerminalUI
             int i = 1;
             foreach (string optionString in optionsCollection.options)
             {
-                _currentOptions.Add(i, optionString
-                    .Split(Globals.Separator));
+                _currentOptions.Add(i, Utilities.SplitArgumentString(optionString));
                 i++;
             }
             
@@ -79,7 +78,7 @@ namespace TerminalUI
                 foreach (KeyValuePair<int, string[]> option in _currentOptions)
                 {
                     yield return Terminal.TypeLine(
-                        $"{OptionText} {i}: '{string.Join(Globals.Separator.ToActualString(), option.Value)}'");
+                        $"{OptionText} {i}: '{option.Value.Combine()}'");
                     yield return new WaitForSeconds(LineInterval / 1000f);
                     i++;
                 }
@@ -149,9 +148,9 @@ namespace TerminalUI
             try
             {
                 KeyValuePair<int, string[]> result = _currentOptions
-                    .First(k => k.Key == choiceInt || args
-                                    .Where((s, i) => _synonymDict.IsSynonymFor(k.Value[i], s))
-                                    .Count() == k.Value.Length);
+                    .First(option => option.Key == choiceInt || args
+                                    .Where((arg, i) => _synonymDict.IsSynonymFor(arg, option.Value[i]))
+                                    .Count() == option.Value.Length);
 
                 ChooseOption(result.Key - 1);
             }
