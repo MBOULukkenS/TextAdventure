@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using DefaultNamespace;
 using UnityEngine;
+using Utility;
 
 namespace WM2000.Terminal
 {
@@ -129,7 +130,7 @@ namespace WM2000.Terminal
 
         private void OnCommandSent(string command)
         {
-            CommandSent?.Invoke(command.Split(Globals.Separator));
+            CommandSent?.Invoke(Utilities.SplitArgumentString(command));
         }
     }
 }
