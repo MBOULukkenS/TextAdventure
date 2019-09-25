@@ -18,7 +18,9 @@ namespace DefaultNamespace.SynonymDict
                 try
                 {
                     synonyms.AddRange(config.SynonymDefs
-                        .First(s => word.Equals(s.Word, StringComparison.CurrentCultureIgnoreCase)).Synonyms);
+                                          .First(sDef => word
+                                              .Equals(sDef.Word, StringComparison.CurrentCultureIgnoreCase))
+                                          .Synonyms);
                 }
                 catch
                 {
