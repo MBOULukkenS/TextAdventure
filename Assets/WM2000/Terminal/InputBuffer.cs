@@ -36,7 +36,7 @@ namespace WM2000.Terminal
             switch (c)
             {
                 case '\b':
-                    DeleteCharacters();;
+                    DeleteCharacters();
                     break;
                 case '\r':
                 case '\n':
