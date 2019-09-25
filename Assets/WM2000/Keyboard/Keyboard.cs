@@ -45,10 +45,8 @@ public class Keyboard : MonoBehaviour
         if (connectedToTerminal) 
             connectedToTerminal.ReceiveFrameInput(Input.inputString);
 
-        if (Terminal.InputBufferCharCount > 0 && ShouldPlayKeyboardSound)
-        {
+        if (Terminal.InputBufferCharCount > 0 && ShouldPlayKeyboardSound) 
             PlayRandomSound();
-        }
     }
 
     private void PlayRandomSound()
