@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DefaultNamespace;
+using DefaultNamespace.SynonymDict;
 using UnityEngine;
 using Utility;
 using WM2000.Terminal;
@@ -17,6 +18,8 @@ namespace TerminalUI
     {
         private OptionChooser _setCurrentOption;
         private Dictionary<int, string[]> _currentOptions = new Dictionary<int, string[]>();
+
+        private SynonymDict _synonymDict;
 
         private IEnumerable<Commands.Command> _commands;
 
@@ -36,6 +39,8 @@ namespace TerminalUI
         private void Start()
         {
             _commands = ReflectionHelper.GetDerivingInstances<Commands.Command>();
+            _synonymDict = GetComponent<SynonymDict>();
+            
             Instance = this;
             
             Terminal.PrimaryTerminal.CommandSent += OnInputReceived;
@@ -137,21 +142,23 @@ namespace TerminalUI
             if (!AllowNumberInput || !int.TryParse(args[0], out int choiceInt))
                 choiceInt = -1;
 
-            args = args.Select(s => s.ToLower()).ToArray();
+            args = args
+                .Select(s => s.ToLower())
+                .ToArray();
 
             try
             {
-                KeyValuePair<int, string[]> result =
-                    _currentOptions.First(kvp => kvp.Key == choiceInt || kvp.Value
-                                                     .Select(s => s.ToLower())
-                                                     .IsEqual(args));
-                
+                KeyValuePair<int, string[]> result = _currentOptions
+                    .First(k => k.Key == choiceInt || args
+                                    .Where((s, i) => _synonymDict.IsSynonymFor(k.Value[i], s))
+                                    .Count() == k.Value.Length);
+
                 ChooseOption(result.Key - 1);
             }
             catch (Exception e)
             {
                 if (!string.IsNullOrEmpty(InvalidChoiceText))
-                    Terminal.WriteLine($"{InvalidChoiceText.Replace("[command]", string.Join(Globals.Separator.ToActualString(), args))}");
+                    Terminal.WriteLine($"{InvalidChoiceText.Replace("[command]", args.Combine())}");
             }
         }
 
