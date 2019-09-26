@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DefaultNamespace;
 using DefaultNamespace.SynonymDict;
+using TerminalUI.Commands.Base;
 using UnityEngine;
 using Utility;
 using WM2000.Terminal;
@@ -54,11 +55,17 @@ namespace TerminalUI
             Terminal.PrimaryInputActive = true;
         }
 
+        public override IEnumerator NodeComplete(string nextNode)
+        {
+            Terminal.WriteLine();
+            return base.NodeComplete(nextNode);
+        }
+
         public override IEnumerator RunOptions(Options optionsCollection, OptionChooser optionChooser)
         {
-            _setCurrentOption = optionChooser;
             Terminal.PrimaryInputActive = false;
-            
+            _setCurrentOption = optionChooser;
+
             int i = 1;
             foreach (string optionString in optionsCollection.options)
             {
@@ -117,7 +124,11 @@ namespace TerminalUI
                     .First(c => c
                         .GetType().Name
                         .ToLower()
-                        .Equals($"{args[0].ToLower()}command", StringComparison.CurrentCultureIgnoreCase)
+                        .Equals($"{args[0].ToLower()}command", StringComparison.CurrentCultureIgnoreCase) 
+                                ||
+                                ((AliasAttribute) Attribute.GetCustomAttribute(c.GetType(), typeof(AliasAttribute)))
+                                .Aliases
+                                .Any(alias => string.Equals(alias, args[0], StringComparison.CurrentCultureIgnoreCase))
                     );
             }
             catch (Exception)
@@ -147,12 +158,13 @@ namespace TerminalUI
             {
                 KeyValuePair<int, string[]> result = _currentOptions
                     .First(option => option.Key == choiceInt || args
-                                    .Where((arg, i) => _synonymDict.IsSynonymFor(arg, option.Value[i]))
+                                    .Where((arg, i) => args.Length == option.Value.Length 
+                                                       && _synonymDict.IsSynonymFor(arg, option.Value[i]))
                                     .Count() == option.Value.Length);
 
                 ChooseOption(result.Key - 1);
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 if (!string.IsNullOrEmpty(InvalidChoiceText))
                     Terminal.WriteLine($"{InvalidChoiceText.Replace("[command]", args.Combine())}");
