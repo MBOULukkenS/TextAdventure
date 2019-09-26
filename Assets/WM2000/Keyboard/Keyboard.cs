@@ -6,7 +6,7 @@ using WM2000.Terminal;
 public class Keyboard : MonoBehaviour
 {
     [SerializeField] AudioClip[] keyStrokeSounds;
-    [SerializeField] Terminal connectedToTerminal;
+    [SerializeField] Terminal connectedTerminal;
 
     public int SoundMinimalInterval = 50;
     
@@ -31,7 +31,7 @@ public class Keyboard : MonoBehaviour
         //QualitySettings.vSyncCount = 0; // No V-Sync so Update() not held back by render
         //Application.targetFrameRate = 1000; // To minimise delay playing key sounds
 
-        if (!connectedToTerminal) 
+        if (!connectedTerminal) 
             Debug.LogWarning("Keyboard not connected to a terminal");
     }
 
