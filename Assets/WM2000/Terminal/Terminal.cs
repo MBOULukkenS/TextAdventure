@@ -69,6 +69,7 @@ namespace WM2000.Terminal
         public void ReceiveFrameInput(string input)
         {
             In.ReceiveFrameInput(input);
+            History.ResetIndex();
         }
 
         public void ReceiveSpecialKeyInput(KeyCode key)
@@ -139,7 +140,9 @@ namespace WM2000.Terminal
             string[] commandSanitized = Utilities.SplitArgumentString(command);
             
             CommandSent?.Invoke(commandSanitized);
-            History.Add(commandSanitized);
+            
+            if (commandSanitized.Length > 0)
+                History.Add(commandSanitized);
         }
 
         private void OnSpecialKeySent(KeyCode key)

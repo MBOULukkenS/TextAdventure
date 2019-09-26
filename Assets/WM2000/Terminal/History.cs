@@ -24,13 +24,13 @@ namespace WM2000.Terminal
         public void Add(string[] item)
         {
             _history.Add(item);
-            _historyIndex = _history.Count - 1;
+            ResetIndex();
         }
 
         public void Clear()
         {
             _history.Clear();
-            _historyIndex = 0;
+            ResetIndex();
         }
 
         public bool Contains(string[] item)
@@ -38,22 +38,31 @@ namespace WM2000.Terminal
             return _history.Contains(item);
         }
 
+        public void ResetIndex()
+        {
+            _historyIndex = _history.Count == 0 ? 0 : _history.Count;
+        }
+
         public string[] GetNextItem()
         {
-            string[] result = _history.Count == 0 ? new string[0] : _history[_historyIndex];
-            
-            if (_historyIndex < _history.Count - 1)
+            if (_historyIndex < _history.Count)
                 _historyIndex++;
+            
+            string[] result = (_history.Count == 0 || _historyIndex == _history.Count) 
+                ? new string[0] 
+                : _history[_historyIndex];
 
             return result;
         }
         
         public string[] GetPreviousItem()
         {
-            string[] result = _history.Count == 0 ? new string[0] : _history[_historyIndex];
-            
             if (_historyIndex > 0)
                 _historyIndex--;
+            
+            string[] result = (_history.Count == 0 || _historyIndex == _history.Count) 
+                ? new string[0] 
+                : _history[_historyIndex];
 
             return result;
         }
@@ -67,7 +76,7 @@ namespace WM2000.Terminal
         {
             bool success = _history.Remove(item);
             if (success)
-                _historyIndex = _history.Count - 1;
+                ResetIndex();
             
             return success;
         }
