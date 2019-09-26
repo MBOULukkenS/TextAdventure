@@ -1,13 +1,22 @@
 ﻿using System.IO;
+using UnityEngine;
 
 namespace WM2000.Terminal
 {
     public class InputBuffer : TextReader
     {
-        private string _currentInputLine = string.Empty;
-
+        public delegate void SpecialKeyPressedHandler(KeyCode key);
         public delegate void CommandSentHandler(string command);
         public event CommandSentHandler CommandSent;
+        public event SpecialKeyPressedHandler SpecialKeyPressed;
+        
+        private string _currentInputLine = string.Empty;
+
+        public string CurrentInputLine
+        {
+            get => _currentInputLine;
+            set => _currentInputLine = value;
+        }
 
         public bool InputEnabled { get; set; } = true;
 
@@ -18,6 +27,14 @@ namespace WM2000.Terminal
             
             foreach (char c in input)
                 UpdateCurrentInputLine(c);
+        }
+
+        public void ReceiveSpecialKeyInput(KeyCode key)
+        {
+            if (!InputEnabled)
+                return;
+            
+            SendSpecialKey(key);
         }
 
         public string GetCurrentInputLine()
@@ -61,6 +78,11 @@ namespace WM2000.Terminal
         {
             CommandSent?.Invoke(command);
             _currentInputLine = string.Empty;
+        }
+
+        private void SendSpecialKey(KeyCode key)
+        {
+            SpecialKeyPressed?.Invoke(key);
         }
     }
 }
