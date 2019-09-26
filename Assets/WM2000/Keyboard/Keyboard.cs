@@ -37,13 +37,18 @@ public class Keyboard : MonoBehaviour
 
     private void Update()
     {
-        bool anyKeyPressed = Input.inputString.Length > 0;
-
-        if (!anyKeyPressed)
+        if (!connectedTerminal)
             return;
-
-        if (connectedToTerminal) 
-            connectedToTerminal.ReceiveFrameInput(Input.inputString);
+        
+        bool anyKeyPressed = Input.inputString.Length > 0;
+        
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+            connectedTerminal.ReceiveSpecialKeyInput(KeyCode.UpArrow);
+        else if (Input.GetKeyDown(KeyCode.DownArrow))
+            connectedTerminal.ReceiveSpecialKeyInput(KeyCode.DownArrow);
+        
+        if (anyKeyPressed)
+            connectedTerminal.ReceiveFrameInput(Input.inputString);
 
         if (Terminal.InputBufferCharCount > 0 && ShouldPlayKeyboardSound) 
             PlayRandomSound();
