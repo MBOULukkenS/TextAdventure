@@ -29,13 +29,7 @@ namespace WM2000.Terminal
                 UpdateCurrentInputLine(c);
         }
 
-        public void ReceiveSpecialKeyInput(KeyCode key)
-        {
-            if (!InputEnabled)
-                return;
-            
-            SendSpecialKey(key);
-        }
+        public void ReceiveSpecialKeyInput(KeyCode key) => SendSpecialKey(key);
 
         public string GetCurrentInputLine()
         {

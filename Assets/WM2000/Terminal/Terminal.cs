@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using DefaultNamespace;
+using TerminalUI;
 using UnityEngine;
 using Utility;
 
@@ -36,6 +37,12 @@ namespace WM2000.Terminal
         {
             get => _primaryTerminal.InputActive;
             set => _primaryTerminal.InputActive = value;
+        }
+
+        public static int PrimaryTypingInterval
+        {
+            get => _primaryTerminal.TypingInterval;
+            set => _primaryTerminal.TypingInterval = value;
         }
 
         public History History { get; private set; } = new History();
@@ -110,11 +117,21 @@ namespace WM2000.Terminal
         
         public static IEnumerator TypeLine(string text)
         {
-            yield return Type(text);
+            yield return TypeLine(text, _primaryTerminal.TypingInterval);
+        }
+
+        public static IEnumerator TypeLine(string text, int interval)
+        {
+            yield return Type(text, interval);
             WriteLine();
         }
 
         public static IEnumerator Type(string text)
+        {
+            yield return Type(text, _primaryTerminal.TypingInterval);
+        }
+        
+        public static IEnumerator Type(string text, int interval)
         {
             bool inputEnabled = PrimaryInputActive;
             PrimaryInputActive = false;
@@ -125,9 +142,9 @@ namespace WM2000.Terminal
                 yield return new WaitForSeconds(
                     UnityEngine.Random.Range(
                         _primaryTerminal.TypingInterval 
-                            - (_primaryTerminal.TypingInterval * _primaryTerminal.TypingIntervalJitter),
+                            - (interval * _primaryTerminal.TypingIntervalJitter),
                         _primaryTerminal.TypingInterval 
-                            + (_primaryTerminal.TypingInterval * _primaryTerminal.TypingIntervalJitter)) / 1000f);
+                            + (interval * _primaryTerminal.TypingIntervalJitter)) / 1000f);
             }
 
             PrimaryInputActive = inputEnabled;
@@ -147,14 +164,17 @@ namespace WM2000.Terminal
 
         private void OnSpecialKeySent(KeyCode key)
         {
+            if (!InputActive)
+                return;
+            
             switch (key)
             {
-                case KeyCode.UpArrow:
+                case Globals.HistoryPreviousKey:
                     In.CurrentInputLine = History
                         .GetPreviousItem()
                         .Combine();
                     break;
-                case KeyCode.DownArrow:
+                case Globals.HistoryNextKey:
                     In.CurrentInputLine = History
                         .GetNextItem()
                         .Combine();
