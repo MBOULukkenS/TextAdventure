@@ -22,7 +22,7 @@
 	{
 		"title": "ConditionalTest",
 		"tags": "",
-		"body": "<<type $sanic>>\n[[Start]]",
+		"body": "Conditional test\n\ntestVal is currently:\n<<type $testVal>>\n\n-> Add <<if $testVal <= 100>>\n    <<set $testVal = $testVal + 1>>\n    Added 1\n-> Subtract <<if $testVal > 0>>\n    <<set $testVal = $testVal - 1>>\n    Subtracted 1\n-> Back\n    [[Start]]\n\n\n[[ConditionalTest]]",
 		"position": {
 			"x": 947,
 			"y": 57
