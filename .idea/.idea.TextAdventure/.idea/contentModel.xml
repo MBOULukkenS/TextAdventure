@@ -22,9 +22,11 @@
           <e p="TerminalUI" t="Include">
             <e p="Commands" t="Include">
               <e p="Base" t="Include">
+                <e p="AliasAttribute.cs" t="Include" />
                 <e p="Command.cs" t="Include" />
                 <e p="ICommand.cs" t="Include" />
               </e>
+              <e p="BrCommand.cs" t="Include" />
               <e p="FinishCommand.cs" t="Include" />
               <e p="PrintCommand.cs" t="Include" />
               <e p="SeparatorCommand.cs" t="Include" />

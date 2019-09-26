@@ -64,8 +64,10 @@
     <Compile Include="Assets\Scripts\SynonymDict\SynonymConfig.cs" />
     <Compile Include="Assets\Scripts\SynonymDict\SynonymDef.cs" />
     <Compile Include="Assets\Scripts\SynonymDict\SynonymDict.cs" />
+    <Compile Include="Assets\Scripts\TerminalUI\Commands\Base\AliasAttribute.cs" />
     <Compile Include="Assets\Scripts\TerminalUI\Commands\Base\Command.cs" />
     <Compile Include="Assets\Scripts\TerminalUI\Commands\Base\ICommand.cs" />
+    <Compile Include="Assets\Scripts\TerminalUI\Commands\BrCommand.cs" />
     <Compile Include="Assets\Scripts\TerminalUI\Commands\FinishCommand.cs" />
     <Compile Include="Assets\Scripts\TerminalUI\Commands\PrintCommand.cs" />
     <Compile Include="Assets\Scripts\TerminalUI\Commands\SeparatorCommand.cs" />
