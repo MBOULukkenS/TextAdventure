@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Utility;
 
 namespace WM2000.Terminal
 {
@@ -10,18 +11,6 @@ namespace WM2000.Terminal
 
         private int _historyIndex = 0;
 
-        private int HistoryIndex
-        {
-            get => _historyIndex;
-            set
-            {
-                if (value < 0 || value > _history.Count - 1)
-                    _historyIndex = (value < 0 ? 0 : _history.Count - 1);
-
-                _historyIndex = value;
-            }
-        } 
-        
         public IEnumerator<string[]> GetEnumerator()
         {
             return _history.GetEnumerator();
@@ -38,24 +27,35 @@ namespace WM2000.Terminal
             _historyIndex = _history.Count - 1;
         }
 
-        public string[] Previous()
-        {
-            return _history[HistoryIndex];
-        }
-
-        public string[] Next()
-        {
-            return _history.First();
-        }
-
         public void Clear()
         {
             _history.Clear();
+            _historyIndex = 0;
         }
 
         public bool Contains(string[] item)
         {
             return _history.Contains(item);
+        }
+
+        public string[] GetNextItem()
+        {
+            string[] result = _history.Count == 0 ? new string[0] : _history[_historyIndex];
+            
+            if (_historyIndex < _history.Count - 1)
+                _historyIndex++;
+
+            return result;
+        }
+        
+        public string[] GetPreviousItem()
+        {
+            string[] result = _history.Count == 0 ? new string[0] : _history[_historyIndex];
+            
+            if (_historyIndex > 0)
+                _historyIndex--;
+
+            return result;
         }
 
         public void CopyTo(string[][] array, int arrayIndex)
@@ -65,7 +65,11 @@ namespace WM2000.Terminal
 
         public bool Remove(string[] item)
         {
-            return _history.Remove(item);
+            bool success = _history.Remove(item);
+            if (success)
+                _historyIndex = _history.Count - 1;
+            
+            return success;
         }
 
         public string[] this[int index]
