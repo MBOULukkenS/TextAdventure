@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using DefaultNamespace;
 using DefaultNamespace.SynonymDict;
 using UnityEngine;
@@ -10,7 +9,6 @@ using Utility;
 using WM2000.Terminal;
 using Yarn;
 using Yarn.Unity;
-using Random = System.Random;
 
 namespace TerminalUI
 {
@@ -122,7 +120,7 @@ namespace TerminalUI
                         .Equals($"{args[0].ToLower()}command", StringComparison.CurrentCultureIgnoreCase)
                     );
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Debug.LogWarning($"Command: '{args[0]}' not found!");
                 yield break;
@@ -154,14 +152,14 @@ namespace TerminalUI
 
                 ChooseOption(result.Key - 1);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 if (!string.IsNullOrEmpty(InvalidChoiceText))
                     Terminal.WriteLine($"{InvalidChoiceText.Replace("[command]", args.Combine())}");
             }
         }
 
-        public void ChooseOption(int option)
+        private void ChooseOption(int option)
         {
             _setCurrentOption?.Invoke(option);
             
