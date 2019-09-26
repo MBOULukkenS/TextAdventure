@@ -14,7 +14,7 @@ namespace WM2000.Terminal
     {
         public delegate void ParameterizedCommandSentHandler(string[] args);
         public ParameterizedCommandSentHandler CommandSent;
-        
+
         [Header("Typing settings")]
         public int TypingInterval = 100;
         public float TypingIntervalJitter = 0.2f;
@@ -38,7 +38,7 @@ namespace WM2000.Terminal
             set => _primaryTerminal.InputActive = value;
         }
 
-        public History History { get; private set; }
+        public History History { get; private set; } = new History();
 
         private int _height;
         private int _width;
@@ -55,6 +55,7 @@ namespace WM2000.Terminal
             Out = new DisplayBuffer(In);
 
             In.CommandSent += OnCommandSent;
+            In.SpecialKeyPressed += OnSpecialKeySent;
         }
 
         public string GetDisplayBuffer(int width, int height)
@@ -68,6 +69,11 @@ namespace WM2000.Terminal
         public void ReceiveFrameInput(string input)
         {
             In.ReceiveFrameInput(input);
+        }
+
+        public void ReceiveSpecialKeyInput(KeyCode key)
+        {
+            In.ReceiveSpecialKeyInput(key);
         }
 
         public static void ClearScreen()
@@ -130,7 +136,27 @@ namespace WM2000.Terminal
 
         private void OnCommandSent(string command)
         {
-            CommandSent?.Invoke(Utilities.SplitArgumentString(command));
+            string[] commandSanitized = Utilities.SplitArgumentString(command);
+            
+            CommandSent?.Invoke(commandSanitized);
+            History.Add(commandSanitized);
+        }
+
+        private void OnSpecialKeySent(KeyCode key)
+        {
+            switch (key)
+            {
+                case KeyCode.UpArrow:
+                    In.CurrentInputLine = History
+                        .GetPreviousItem()
+                        .Combine();
+                    break;
+                case KeyCode.DownArrow:
+                    In.CurrentInputLine = History
+                        .GetNextItem()
+                        .Combine();
+                    break;
+            }
         }
     }
 }
