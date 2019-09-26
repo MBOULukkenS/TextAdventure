@@ -27,6 +27,7 @@
               </e>
               <e p="FinishCommand.cs" t="Include" />
               <e p="PrintCommand.cs" t="Include" />
+              <e p="SeparatorCommand.cs" t="Include" />
               <e p="TypeCommand.cs" t="Include" />
             </e>
             <e p="WM2000DialogueUI.cs" t="Include" />
