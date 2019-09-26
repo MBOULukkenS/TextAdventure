@@ -12,4 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4e77637fbf145a99415d8b6f7733f97, type: 3}
   m_Name: Synonym Config
   m_EditorClassIdentifier: 
-  SynonymDefs: []
+  SynonymDefs:
+  - Word: subtract
+    Synonyms:
+    - decrement
+    - minus
+  - Word: add
+    Synonyms:
+    - increment
+    - plus
