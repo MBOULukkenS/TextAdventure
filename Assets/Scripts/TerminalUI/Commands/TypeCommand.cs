@@ -1,9 +1,11 @@
 using System.Collections;
+using TerminalUI.Commands.Base;
 using WM2000.Terminal;
 using Yarn;
 
 namespace TerminalUI.Commands
 {
+    [Alias("TypeLine")]
     public class TypeCommand : Command
     {
         public override IEnumerator Run(params string[] args)
@@ -18,7 +20,8 @@ namespace TerminalUI.Commands
                     yield return Terminal.Type(result.AsString);
             }
             
-            Terminal.WriteLine();
+            if (args.Length > 0)
+                Terminal.WriteLine();
         }
     }
 }
