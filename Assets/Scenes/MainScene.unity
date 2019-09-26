@@ -298,6 +298,11 @@ PrefabInstance:
       propertyPath: m_textAlignment
       value: 1025
       objectReference: {fileID: 0}
+    - target: {fileID: 6551091894075771493, guid: c46548f7b668a78409fa399c095e4e6b,
+        type: 3}
+      propertyPath: m_enableKerning
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 224567467657228926, guid: c46548f7b668a78409fa399c095e4e6b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -313,6 +318,11 @@ PrefabInstance:
       propertyPath: SoundMinimalInterval
       value: 75
       objectReference: {fileID: 0}
+    - target: {fileID: 114605418127070900, guid: c46548f7b668a78409fa399c095e4e6b,
+        type: 3}
+      propertyPath: connectedTerminal
+      value: 
+      objectReference: {fileID: 1974085506}
     - target: {fileID: 114578242904794280, guid: c46548f7b668a78409fa399c095e4e6b,
         type: 3}
       propertyPath: TypingInterval
@@ -397,3 +407,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _synonymConfigs:
   - {fileID: 11400000, guid: c27f2e1bf3e3f3548bbee9ac5a1c9d93, type: 2}
+--- !u!114 &1974085506 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114578242904794280, guid: c46548f7b668a78409fa399c095e4e6b,
+    type: 3}
+  m_PrefabInstance: {fileID: 721100310}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd2a59f5ce36bce4d9b6c707148530fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
