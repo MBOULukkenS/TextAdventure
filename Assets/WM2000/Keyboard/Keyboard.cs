@@ -1,4 +1,5 @@
 ﻿using System;
+using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.Assertions;
 using WM2000.Terminal;
@@ -42,12 +43,12 @@ public class Keyboard : MonoBehaviour
         
         bool anyKeyPressed = Input.inputString.Length > 0;
         
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-            connectedTerminal.ReceiveSpecialKeyInput(KeyCode.UpArrow);
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
-            connectedTerminal.ReceiveSpecialKeyInput(KeyCode.DownArrow);
-        
-        if (anyKeyPressed)
+        if (Input.GetKeyDown(Globals.HistoryPreviousKey))
+            connectedTerminal.ReceiveSpecialKeyInput(Globals.HistoryPreviousKey);
+        else if (Input.GetKeyDown(Globals.HistoryNextKey))
+            connectedTerminal.ReceiveSpecialKeyInput(Globals.HistoryNextKey);
+
+        if (anyKeyPressed) 
             connectedTerminal.ReceiveFrameInput(Input.inputString);
 
         if (Terminal.InputBufferCharCount > 0 && ShouldPlayKeyboardSound) 
