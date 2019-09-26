@@ -380,6 +380,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultVariables:
-  - name: sanic
-    value: This is a default variable.
-    type: 1
+  - name: testVal
+    value: 98
+    type: 0
+--- !u!114 &1014050163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1014050158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c1e451583b645d5903921e7cb2d82c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _synonymConfigs:
+  - {fileID: 11400000, guid: c27f2e1bf3e3f3548bbee9ac5a1c9d93, type: 2}
