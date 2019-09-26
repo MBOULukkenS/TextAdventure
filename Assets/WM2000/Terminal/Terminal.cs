@@ -94,7 +94,7 @@ namespace WM2000.Terminal
 
         public static void PrintSeparator(char separatorChar = '-')
         {
-            WriteLine(new string(separatorChar, _primaryTerminal._width - 2));
+            WriteLine(new string(separatorChar, (_primaryTerminal._width * 3) - 2));
         }
 
         public static void Write(string line)
