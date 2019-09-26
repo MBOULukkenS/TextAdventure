@@ -1,5 +1,6 @@
 using System.Collections;
 using WM2000.Terminal;
+using Yarn;
 
 namespace TerminalUI.Commands
 {
@@ -7,8 +8,17 @@ namespace TerminalUI.Commands
     {
         public override IEnumerator Run(params string[] args)
         {
-            if (args.Length == 1)
-                yield return Terminal.TypeLine(Wm2000VariableStorage.Instance.GetValue(args[0]).AsString);
+            foreach (string arg in args)
+            {
+                Value result = Wm2000VariableStorage.Instance.GetValue(arg);
+
+                if (result.type == Value.Type.Null)
+                    yield return Terminal.Type($"{arg} ");
+                else
+                    yield return Terminal.Type(result.AsString);
+            }
+            
+            Terminal.WriteLine();
         }
     }
 }
