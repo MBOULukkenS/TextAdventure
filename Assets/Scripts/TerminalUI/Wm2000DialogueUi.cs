@@ -22,6 +22,8 @@ namespace TerminalUI
 
         private IEnumerable<Commands.Command> _commands;
 
+        private float LineDelay => LineInterval / 1000f;
+
         [Header("Settings")]
         public bool DisplayOptions = true;
         public bool AllowNumberInput = true;
@@ -50,7 +52,7 @@ namespace TerminalUI
             Terminal.PrimaryInputActive = false;
 
             yield return Terminal.TypeLine(line.text);
-            yield return new WaitForSeconds(LineInterval / 1000f);
+            yield return new WaitForSeconds(LineDelay);
 
             Terminal.PrimaryInputActive = true;
         }
@@ -58,12 +60,14 @@ namespace TerminalUI
         public override IEnumerator NodeComplete(string nextNode)
         {
             Terminal.WriteLine();
+
             return base.NodeComplete(nextNode);
         }
 
         public override IEnumerator RunOptions(Options optionsCollection, OptionChooser optionChooser)
         {
             Terminal.PrimaryInputActive = false;
+
             _setCurrentOption = optionChooser;
 
             int i = 1;
@@ -104,7 +108,7 @@ namespace TerminalUI
             Terminal.WriteLine();
             yield return Terminal.TypeLine(DialogueFinishedMessage);
             
-            while (Input.GetKeyDown(KeyCode.Escape) == false)
+            while (Input.GetKeyDown(Globals.SkipKey) == false)
                 yield return null;
 
             Terminal.ClearScreen();
