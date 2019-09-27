@@ -140,11 +140,8 @@ namespace TerminalUI
             //Wacht totdat de gebruiker op de SkipKey drukt.
             while (Input.GetKeyDown(Globals.SkipKey) == false)
                 yield return null;
-
-            Terminal.ClearScreen();
-            GameObject.Find("WM2000")
-                .GetComponent<DialogueRunner>()
-                .StartDialogue();
+            
+            ResetGame();
         }
 
         /// <summary>
@@ -225,6 +222,20 @@ namespace TerminalUI
             
             _currentOptions.Clear();
             _setCurrentOption = null;
+        }
+
+        /// <summary>
+        /// Deze functie herstart het spel.
+        /// </summary>
+        private void ResetGame()
+        {
+            GetComponent<Wm2000VariableStorage>()
+                .Clear(); //Verwijder alle variabelen van de vorige sessie.
+            
+            Terminal.ClearScreen();
+            GameObject.Find("WM2000")
+                .GetComponent<DialogueRunner>()
+                .StartDialogue(); //Herstart het dialoog.
         }
     }
 }
