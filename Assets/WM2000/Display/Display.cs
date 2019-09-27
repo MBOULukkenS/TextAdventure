@@ -1,6 +1,5 @@
 ﻿using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 using WM2000.Terminal;
 
 public class Display : MonoBehaviour

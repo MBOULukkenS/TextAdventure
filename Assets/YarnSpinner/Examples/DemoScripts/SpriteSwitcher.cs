@@ -25,7 +25,7 @@ SOFTWARE.
 */
 
 using UnityEngine;
-using System.Collections;
+
 /// Attach sprite renderer to game object
 namespace Yarn.Unity.Example {
 

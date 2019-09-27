@@ -1,7 +1,5 @@
-﻿using System;
-using Antlr4.Runtime;
+﻿using Antlr4.Runtime;
 using System.Text;
-using System.IO;
 using System.Globalization;
 
 namespace Yarn

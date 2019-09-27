@@ -1,7 +1,4 @@
-﻿using System;
-using DefaultNamespace;
-using UnityEngine;
-using UnityEngine.Assertions;
+﻿using UnityEngine;
 using WM2000.Terminal;
 
 public class Keyboard : MonoBehaviour
