@@ -61,6 +61,8 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Globals.cs" />
     <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\SoundSystem.cs" />
+    <Compile Include="Assets\Scripts\SoundConfig.cs" />
     <Compile Include="Assets\Scripts\SynonymDict\SynonymConfig.cs" />
     <Compile Include="Assets\Scripts\SynonymDict\SynonymDef.cs" />
     <Compile Include="Assets\Scripts\SynonymDict\SynonymDict.cs" />
@@ -69,6 +71,7 @@
     <Compile Include="Assets\Scripts\TerminalUI\Commands\Base\ICommand.cs" />
     <Compile Include="Assets\Scripts\TerminalUI\Commands\BrCommand.cs" />
     <Compile Include="Assets\Scripts\TerminalUI\Commands\FinishCommand.cs" />
+    <Compile Include="Assets\Scripts\TerminalUI\Commands\PlaySoundCommand.cs" />
     <Compile Include="Assets\Scripts\TerminalUI\Commands\PrintCommand.cs" />
     <Compile Include="Assets\Scripts\TerminalUI\Commands\SeparatorCommand.cs" />
     <Compile Include="Assets\Scripts\TerminalUI\Commands\TypeCommand.cs" />

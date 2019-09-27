@@ -13,7 +13,9 @@
           <e p="Globals.cs" t="Include" />
           <e p="Managers" t="Include">
             <e p="GameManager.cs" t="Include" />
+            <e p="SoundSystem.cs" t="Include" />
           </e>
+          <e p="SoundConfig.cs" t="Include" />
           <e p="SynonymDict" t="Include">
             <e p="SynonymConfig.cs" t="Include" />
             <e p="SynonymDef.cs" t="Include" />
@@ -28,6 +30,7 @@
               </e>
               <e p="BrCommand.cs" t="Include" />
               <e p="FinishCommand.cs" t="Include" />
+              <e p="PlaySoundCommand.cs" t="Include" />
               <e p="PrintCommand.cs" t="Include" />
               <e p="SeparatorCommand.cs" t="Include" />
               <e p="TypeCommand.cs" t="Include" />

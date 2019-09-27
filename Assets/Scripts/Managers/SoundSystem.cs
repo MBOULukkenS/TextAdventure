@@ -1,0 +1,29 @@
+using System.Linq;
+using DefaultNamespace;
+using UnityEngine;
+using Utility;
+
+namespace Managers
+{
+    public class SoundSystem : MonoSingleton<SoundSystem>
+    {
+        public AudioSource AudioSource { get; private set; }
+
+        public override void Start()
+        {
+            AudioSource = gameObject.AddComponent<AudioSource>();
+        }
+
+        public void PlaySound(string clipName)
+        {
+            AudioClip clipToPlay = GetAudioClipByName(clipName);
+            
+            AudioSource.PlayOneShot(clipToPlay);
+        }
+
+        private static AudioClip GetAudioClipByName(string name)
+        {
+            return SoundConfig.Instance.AudioClips.First(ac => ac.name == name);
+        }
+    }
+}
