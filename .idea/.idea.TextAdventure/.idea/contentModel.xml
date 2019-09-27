@@ -12,7 +12,6 @@
         <e p="Scripts" t="Include">
           <e p="Globals.cs" t="Include" />
           <e p="Managers" t="Include">
-            <e p="GameManager.cs" t="Include" />
             <e p="SoundSystem.cs" t="Include" />
           </e>
           <e p="SoundConfig.cs" t="Include" />

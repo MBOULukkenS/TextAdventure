@@ -60,7 +60,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Globals.cs" />
-    <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
     <Compile Include="Assets\Scripts\Managers\SoundSystem.cs" />
     <Compile Include="Assets\Scripts\SoundConfig.cs" />
     <Compile Include="Assets\Scripts\SynonymDict\SynonymConfig.cs" />
