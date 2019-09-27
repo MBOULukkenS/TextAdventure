@@ -9,6 +9,7 @@ namespace Utility
         static void LoadAfterScene()
         {
             GameManager.CreateInstance();
+            SoundSystem.CreateInstance();
         }
     }
 }
