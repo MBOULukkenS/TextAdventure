@@ -13,11 +13,24 @@ MonoBehaviour:
   m_Name: Synonym Config
   m_EditorClassIdentifier: 
   SynonymDefs:
-  - Word: subtract
+  - Word: Links
     Synonyms:
-    - decrement
-    - minus
-  - Word: add
+    - West
+  - Word: Rechts
     Synonyms:
-    - increment
-    - plus
+    - Oost
+  - Word: Ruit
+    Synonyms:
+    - Raam
+    - Glas
+  - Word: Ja
+    Synonyms:
+    - Y
+  - Word: Nee
+    Synonyms:
+    - N
+  - Word: Onderzoek
+    Synonyms:
+    - Bekijk
+    - Inspecteer
+    - Controleer
