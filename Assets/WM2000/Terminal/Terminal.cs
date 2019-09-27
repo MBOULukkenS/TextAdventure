@@ -50,6 +50,8 @@ namespace WM2000.Terminal
         private int _height;
         private int _width;
 
+        private bool _initialized = false;
+
         private static Terminal _primaryTerminal;
         public static Terminal PrimaryTerminal => _primaryTerminal;
 
@@ -57,20 +59,29 @@ namespace WM2000.Terminal
         {
             if (_primaryTerminal == null)  
                 _primaryTerminal = this;  // Be the one
-            
-            In = new InputBuffer();
-            Out = new DisplayBuffer(In);
 
+            In = new InputBuffer();
+            
             In.CommandSent += OnCommandSent;
             In.SpecialKeyPressed += OnSpecialKeySent;
         }
 
-        public string GetDisplayBuffer(int width, int height)
+        public void Initialize(int width, int height)
         {
             _height = height;
             _width = width;
             
-            return Out.GetDisplayBuffer(width, height);
+            Out = new DisplayBuffer(In, _width, _height);
+
+            _initialized = true;
+        }
+
+        public string GetDisplayBuffer()
+        {
+            if (!_initialized)
+                throw new InvalidOperationException("Initialize needs to be called first!");
+            
+            return Out.GetDisplayBuffer();
         }
 
         public void ReceiveFrameInput(string input)

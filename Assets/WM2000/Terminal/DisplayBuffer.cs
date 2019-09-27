@@ -11,6 +11,9 @@ namespace WM2000.Terminal
     {
         public const char NewLineChar = '\n';
 
+        private int _height;
+        private int _width;
+
         private bool _isDirty;
         private string _cachedDisplayBuffer = string.Empty;
 
@@ -31,6 +34,9 @@ namespace WM2000.Terminal
             {
                 if (_isDirty)
                 {
+                    if (_logLines.Count > _height)
+                        _logLines.RemoveRange(0, _logLines.Count - _height);
+                    
                     string output = _logLines.Aggregate("", (current, line) => current + line);
 
                     _cachedDisplayBuffer = output;
@@ -56,9 +62,12 @@ namespace WM2000.Terminal
         
         public override Encoding Encoding => Encoding.Default;
 
-        public DisplayBuffer(InputBuffer inputBuffer)
+        public DisplayBuffer(InputBuffer inputBuffer, int width, int height)
         {
             _inputBuffer = inputBuffer;
+            _width = width;
+            _height = height;
+            
             inputBuffer.CommandSent += OnCommand;
         }
 
@@ -83,10 +92,10 @@ namespace WM2000.Terminal
             _logLines = new List<string>();
         }
 
-        public string GetDisplayBuffer(int width, int height)
+        public string GetDisplayBuffer()
         {
             //string wrappedLines = Wrap(width, AllLines);
-            return CutViewport(height, AllLines);
+            return CutViewport(_height, AllLines);
         }
 
         private string Wrap(int width, string str)

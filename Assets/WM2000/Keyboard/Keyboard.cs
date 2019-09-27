@@ -48,10 +48,11 @@ public class Keyboard : MonoBehaviour
         else if (Input.GetKeyDown(Globals.HistoryNextKey))
             connectedTerminal.ReceiveSpecialKeyInput(Globals.HistoryNextKey);
 
-        if (anyKeyPressed) 
-            connectedTerminal.ReceiveFrameInput(Input.inputString);
+        if (!anyKeyPressed) 
+            return;
+        connectedTerminal.ReceiveFrameInput(Input.inputString);
 
-        if (Terminal.InputBufferCharCount > 0 && ShouldPlayKeyboardSound) 
+        if (Terminal.InputBufferCharCount > 0 && ShouldPlayKeyboardSound)
             PlayRandomSound();
     }
 

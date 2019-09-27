@@ -19,6 +19,7 @@ public class Display : MonoBehaviour
     private void Start()
     {
         _screenText = GetComponentInChildren<TextMeshProUGUI>();
+        connectedToTerminal.Initialize(DisplayWidth, DisplayHeight);
 
         if (!connectedToTerminal)
             Debug.LogWarning("Display not connected to a terminal");
@@ -28,6 +29,6 @@ public class Display : MonoBehaviour
     private void Update()
     {
         if (connectedToTerminal)
-            _screenText.text = connectedToTerminal.GetDisplayBuffer(DisplayWidth, DisplayHeight);
+            _screenText.text = connectedToTerminal.GetDisplayBuffer();
     }
 } 
