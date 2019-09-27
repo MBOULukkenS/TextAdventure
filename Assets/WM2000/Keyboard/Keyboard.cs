@@ -29,8 +29,6 @@ public class Keyboard : MonoBehaviour
     private void Start()
     {
         _audioSource = GetComponent<AudioSource>();
-        //QualitySettings.vSyncCount = 0; // No V-Sync so Update() not held back by render
-        //Application.targetFrameRate = 1000; // To minimise delay playing key sounds
 
         if (!connectedTerminal) 
             Debug.LogWarning("Keyboard not connected to a terminal");
