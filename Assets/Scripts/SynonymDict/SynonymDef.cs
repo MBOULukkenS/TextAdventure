@@ -1,7 +1,10 @@
 using System;
 
-namespace DefaultNamespace.SynonymDict
+namespace SynonymDict
 {
+    /// <summary>
+    /// Dit is een synoniemdefinitie, hierin wordt een synoniem beschreven.
+    /// </summary>
     [Serializable]
     public class SynonymDef
     {

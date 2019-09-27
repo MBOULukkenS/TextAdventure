@@ -5,6 +5,9 @@ using Yarn;
 
 namespace TerminalUI.Commands
 {
+    /// <summary>
+    /// Dit commando typt een lijn tekst uit in de primaire Terminal.
+    /// </summary>
     [Alias("TypeLine")]
     public class TypeCommand : Command
     {

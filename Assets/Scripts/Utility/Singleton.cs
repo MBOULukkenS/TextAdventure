@@ -4,6 +4,10 @@ using UnityEngine;
 
 namespace Utility
 {
+    /// <summary>
+    /// Simpele Singleton.
+    /// </summary>
+    /// <typeparam name="T">Inheritor</typeparam>
     public abstract class Singleton<T>
     {
         protected bool Initialized;
@@ -33,6 +37,10 @@ namespace Utility
         }
     }
 
+    /// <summary>
+    /// Een MonoBehaviour Singleton, voegt een nieuwe gameobject toe als het nog niet bestaat.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     [DisallowMultipleComponent]
     public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T>
     {
@@ -72,6 +80,11 @@ namespace Utility
         }
     }
 
+    /// <summary>
+    /// Een 'targetted' MonoBehaviour singleton, Instantiateert een nieuw gameobject als het nog niet bestaat.
+    /// </summary>
+    /// <typeparam name="T">Inheritor</typeparam>
+    /// <typeparam name="T2">Target object (singleton)</typeparam>
     [DisallowMultipleComponent]
     public abstract class MonoTargettedSingleton<T, T2> : MonoSingleton<T> where T : MonoTargettedSingleton<T, T2>
     {
@@ -96,7 +109,10 @@ namespace Utility
             return true;
         }
     }
-
+/// <summary>
+/// Een Scriptable Object Configuratie Singleton.
+/// </summary>
+/// <typeparam name="T">Inheritor</typeparam>
     public abstract class ScriptableObjectConfigSingleton<T> : ScriptableObject 
         where T : ScriptableObjectConfigSingleton<T>
     {
@@ -121,6 +137,10 @@ namespace Utility
         }
     }
 
+/// <summary>
+/// Een Scriptable Object singleton.
+/// </summary>
+/// <typeparam name="T">Inheritor</typeparam>
     public abstract class ScriptableObjectSingleton<T> : ScriptableObject where T : ScriptableObjectSingleton<T>
     {
         private static T _instance;

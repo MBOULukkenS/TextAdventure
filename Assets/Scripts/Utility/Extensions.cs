@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using DefaultNamespace;
 
 namespace Utility
 {
+    /// <summary>
+    /// Extension functies voor allerlij klasses en objecten.
+    /// </summary>
     public static class Extensions
     {
         public static bool IsEqual<T>(this T[] array, T[] other)

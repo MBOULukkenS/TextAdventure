@@ -4,6 +4,9 @@ using TerminalUI.Commands.Base;
 
 namespace TerminalUI.Commands
 {
+    /// <summary>
+    /// Een command dat geluiden afspeelt.
+    /// </summary>
     [Alias("Sound", "SFX")]
     public class PlaySoundCommand : Command
     {

@@ -6,10 +6,13 @@ using Yarn.Unity;
 
 namespace TerminalUI
 {
+    /// <summary>
+    /// Hier worden de variabelen voor YarnSpinner opgeslagen
+    /// </summary>
     public class Wm2000VariableStorage : VariableStorageBehaviour
     {
         [SerializeField]
-        private Dictionary<string, Value> variables = new Dictionary<string, Value>();
+        private Dictionary<string, Value> Variables = new Dictionary<string, Value>();
 
         /// A default value to apply when the object wakes up, or
         /// when ResetToDefaults is called
@@ -17,15 +20,15 @@ namespace TerminalUI
         public class DefaultVariable
         {
             /// Name of the variable
-            public string name;
+            public string Name;
             /// Value of the variable
-            public string value;
+            public string Value;
             /// Type of the variable
-            public Value.Type type;
+            public Value.Type Type;
         }
 
         /// Our list of default variables, for debugging.
-        public DefaultVariable[] defaultVariables;
+        public DefaultVariable[] DefaultVariables;
         
         public static Wm2000VariableStorage Instance { get; private set; }
 
@@ -43,7 +46,7 @@ namespace TerminalUI
 
             // For each default variable that's been defined, parse the string
             // that the user typed in in Unity and store the variable
-            foreach (DefaultVariable variable in defaultVariables) 
+            foreach (DefaultVariable variable in DefaultVariables) 
                 ResetVariable(variable);
         }
 
@@ -51,42 +54,42 @@ namespace TerminalUI
         public override void SetValue(string variableName, Value value)
         {
             // Copy this value into our list
-            variables[variableName] = new Value(value);
+            Variables[variableName] = new Value(value);
         }
 
         /// Get the value of a variable
         public override Value GetValue(string variableName)
         {
             // If we don't have a variable with this name, return the null value
-            if (variables.ContainsKey(variableName) == false)
+            if (Variables.ContainsKey(variableName) == false)
                 return Value.NULL;
         
-            return variables [variableName];
+            return Variables [variableName];
         }
 
         /// Erase all variables
         public override void Clear()
         {
-            variables.Clear();
+            Variables.Clear();
         }
 
         private void ResetVariable(DefaultVariable variable)
         {
             object value;
 
-            switch (variable.type) 
+            switch (variable.Type) 
             {
                 case Value.Type.Number:
-                    float.TryParse(variable.value, out float resultf);
+                    float.TryParse(variable.Value, out float resultf);
                     value = resultf;
                     break;
 
                 case Value.Type.String:
-                    value = variable.value;
+                    value = variable.Value;
                     break;
 
                 case Value.Type.Bool:
-                    bool.TryParse(variable.value, out bool resultb);
+                    bool.TryParse(variable.Value, out bool resultb);
                     value = resultb;
                     break;
 
@@ -96,7 +99,7 @@ namespace TerminalUI
                         
                     Debug.LogErrorFormat("Can't set variable {0} to {1}: You can't " +
                                          "set a default variable to be another variable, because it " +
-                                         "may not have been initialised yet.", variable.name, variable.value);
+                                         "may not have been initialised yet.", variable.Name, variable.Value);
                     return;
 
                 case Value.Type.Null:
@@ -109,7 +112,7 @@ namespace TerminalUI
 
             Value v = new Value(value);
 
-            SetValue("$" + variable.name, v);
+            SetValue("$" + variable.Name, v);
         }
     }
 }

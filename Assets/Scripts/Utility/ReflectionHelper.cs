@@ -4,6 +4,9 @@ using System.Linq;
 
 namespace Utility
 {
+    /// <summary>
+    /// Deze klasse helpt met Reflection
+    /// </summary>
     public static class ReflectionHelper
     {
         public static IEnumerable<T> GetDerivingInstances<T>()

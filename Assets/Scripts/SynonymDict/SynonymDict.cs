@@ -3,13 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace DefaultNamespace.SynonymDict
+namespace SynonymDict
 {
+    /// <summary>
+    /// Dit is de implementatie van een synoniemenboek.
+    /// </summary>
     public class SynonymDict : MonoBehaviour
     {
         [SerializeField]
         private SynonymConfig[] _synonymConfigs;
 
+        /// <summary>
+        /// Deze functie zoekt alle synoniemen voor 'word'
+        /// </summary>
+        /// <param name="word">Het woord waar synoniemen voor gevonden moeten worden</param>
+        /// <returns>alle gevonden synoniemen voor 'word'</returns>
         public IEnumerable<string> GetSynonyms(string word)
         {
             List<string> synonyms = new List<string>();
@@ -31,6 +39,12 @@ namespace DefaultNamespace.SynonymDict
             return synonyms.ToArray();
         }
 
+        /// <summary>
+        /// Deze functie controleerd of dat 'synonym' een synoniem is voor 'word'.
+        /// </summary>
+        /// <param name="synonym">Het mogelijke synoniem</param>
+        /// <param name="word">Het woord waar dat 'synonym' een synoniem voor moet zijn</param>
+        /// <returns>Of een woord een synoniem is voor 'word'</returns>
         public bool IsSynonymFor(string synonym, string word)
         {
             try

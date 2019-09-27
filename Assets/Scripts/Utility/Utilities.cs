@@ -3,6 +3,9 @@ using DefaultNamespace;
 
 namespace Utility
 {
+    /// <summary>
+    /// Utilities klasse. Hier staan een heleboel helper functies in.
+    /// </summary>
     public static class Utilities
     {
         /// <summary>

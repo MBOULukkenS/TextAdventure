@@ -7,6 +7,9 @@ using UnityEngine;
 
 namespace WM2000.Terminal
 {
+    /// <summary>
+    /// Dit object regelt de text output naar de het WM2000 terminal scherm.
+    /// </summary>
     public class DisplayBuffer : TextWriter
     {
         public const char NewLineChar = '\n';
@@ -17,6 +20,9 @@ namespace WM2000.Terminal
         private bool _isDirty;
         private string _cachedDisplayBuffer = string.Empty;
 
+        /// <summary>
+        /// Deze property bepaalt of dat de gebruiker input kan leveren of niet.
+        /// </summary>
         private bool _inputEnabled = true;
         public bool InputEnabled
         {
@@ -28,16 +34,21 @@ namespace WM2000.Terminal
             }
         }
 
+        /// <summary>
+        /// Deze property combineert alle loglines, en zorgt ervoor dat loglines niet te lang wordt.
+        /// </summary>
         private string AllLines
         {
             get
             {
                 if (_isDirty)
                 {
+                    //lines buiten de viewport worden automatisch verwijdert uit de loglines lijst.
                     if (_logLines.Count > _height)
                         _logLines.RemoveRange(0, _logLines.Count - _height);
                     
-                    string output = _logLines.Aggregate("", (current, line) => current + line);
+                    //Combineer alle loglines
+                    string output = _logLines.Aggregate("", (current, line) => current + line); 
 
                     _cachedDisplayBuffer = output;
                     _isDirty = false;
@@ -62,6 +73,12 @@ namespace WM2000.Terminal
         
         public override Encoding Encoding => Encoding.Default;
 
+        /// <summary>
+        /// Constructor voor de DisplayBuffer
+        /// </summary>
+        /// <param name="inputBuffer">De inputbuffer die gebruikt wordt</param>
+        /// <param name="width">De breedte van de terminal</param>
+        /// <param name="height">De hoogte van de terminal</param>
         public DisplayBuffer(InputBuffer inputBuffer, int width, int height)
         {
             _inputBuffer = inputBuffer;
@@ -71,12 +88,20 @@ namespace WM2000.Terminal
             inputBuffer.CommandSent += OnCommand;
         }
 
+        /// <summary>
+        /// Schrijft een text naar de terminal, en voegt ook een newline toe.
+        /// </summary>
+        /// <param name="text">De text die moet worden geschreven</param>
         public override void WriteLine(string text)
         {
             _logLines.Add(text + NewLineChar);
             _isDirty = true;
         }
 
+        /// <summary>
+        /// Schrijft een text naar de terminal zonder een newline toe te voegen.
+        /// </summary>
+        /// <param name="text">De text die moet worden geschreven</param>
         public override void Write(string text)
         {
             if (_logLines.Count == 0)
@@ -87,6 +112,9 @@ namespace WM2000.Terminal
             _isDirty = true;
         }
 
+        /// <summary>
+        /// Verwijdert alle entries uit loglines
+        /// </summary>
         public void Clear()
         {
             _logLines = new List<string>();
@@ -100,7 +128,7 @@ namespace WM2000.Terminal
 
         private string Wrap(int width, string str)
         {
-            string output = "";
+            string output = string.Empty;
             int column = 1;
             foreach (char c in str)
             {

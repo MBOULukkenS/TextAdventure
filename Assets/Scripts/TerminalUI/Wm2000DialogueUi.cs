@@ -2,8 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using DefaultNamespace;
-using DefaultNamespace.SynonymDict;
 using TerminalUI.Commands.Base;
 using UnityEngine;
 using Utility;
@@ -13,16 +11,19 @@ using Yarn.Unity;
 
 namespace TerminalUI
 {
+    /// <summary>
+    /// Deze klasse regelt het dialoogsysteem in de terminal.
+    /// </summary>
     public class Wm2000DialogueUi : DialogueUIBehaviour
     {
         private OptionChooser _setCurrentOption;
         private Dictionary<int, string[]> _currentOptions = new Dictionary<int, string[]>();
 
-        private SynonymDict _synonymDict;
+        private SynonymDict.SynonymDict _synonymDict;
 
         private IEnumerable<Commands.Command> _commands;
 
-        private float LineDelay => LineInterval / 1000f;
+        private float LineDelay => LineInterval / 1000f; 
 
         [Header("Settings")]
         public bool DisplayOptions = true;
@@ -35,28 +36,44 @@ namespace TerminalUI
         public string DialogueFinishedMessage = "Spel afgelopen. Druk op ESC om over nieuw te beginnen.";
         public string InvalidChoiceText = "I dont know how to [command]";
         
+        /// <summary>
+        /// Singleton instance
+        /// </summary>
         public static Wm2000DialogueUi Instance { get; private set; }
 
+        /// <summary>
+        /// Deze functie initialiseert het WM2000DialogueUi gameobject.
+        /// </summary>
         private void Start()
         {
             _commands = ReflectionHelper.GetDerivingInstances<Commands.Command>();
-            _synonymDict = GetComponent<SynonymDict>();
+            _synonymDict = GetComponent<SynonymDict.SynonymDict>();
             
             Instance = this;
             
             Terminal.PrimaryTerminal.CommandSent += OnInputReceived;
         }
 
+        /// <summary>
+        /// Deze functie wordt door YarnSpinner uitgevoerd als er een lijn moet worden geschreven.
+        /// </summary>
+        /// <param name="line">de tekst die moet worden geschreven</param>
+        /// <returns>Unity Enumerator</returns>
         public override IEnumerator RunLine(Line line)
         {
             Terminal.PrimaryInputActive = false;
 
-            yield return Terminal.TypeLine(line.text);
+            yield return Terminal.TypeLine(line.text); //Typ de text lijn
             yield return new WaitForSeconds(LineDelay);
 
             Terminal.PrimaryInputActive = true;
         }
 
+        /// <summary>
+        /// Deze functie wordt door YarnSpinner uitgevoerd als een 'node' afgelopen is.
+        /// </summary>
+        /// <param name="nextNode">naam van de volgende 'node'</param>
+        /// <returns>Unity Enumerator</returns>
         public override IEnumerator NodeComplete(string nextNode)
         {
             Terminal.WriteLine();
@@ -64,12 +81,19 @@ namespace TerminalUI
             return base.NodeComplete(nextNode);
         }
 
+        /// <summary>
+        /// Deze functie wordt door YarnSpinner uitgevoerd als er een keuze moet worden gemaakt door de speler.
+        /// </summary>
+        /// <param name="optionsCollection">Mogelijke keuzes</param>
+        /// <param name="optionChooser">De functie die de keuze registreert</param>
+        /// <returns>Unity Enumerator</returns>
         public override IEnumerator RunOptions(Options optionsCollection, OptionChooser optionChooser)
         {
             Terminal.PrimaryInputActive = false;
 
             _setCurrentOption = optionChooser;
 
+            //voeg alle opties toe aan _currentOptions, zodat ze kunnen worden geselecteerd.
             int i = 1;
             foreach (string optionString in optionsCollection.options)
             {
@@ -95,12 +119,17 @@ namespace TerminalUI
                 Terminal.PrintSeparator();
             }
 
-            Terminal.PrimaryInputActive = true;
+            Terminal.PrimaryInputActive = true; 
 
+            //Wacht totdat een optie is geselecteerd
             while (_setCurrentOption != null)
                 yield return null;
         }
 
+        /// <summary>
+        /// Deze functie wordt door YarnSpinner gedraait als het dialoog (verhaal) klaar is.
+        /// </summary>
+        /// <returns>Unity Enumerator</returns>
         public override IEnumerator DialogueComplete()
         {
             Terminal.PrimaryInputActive = false;
@@ -108,6 +137,7 @@ namespace TerminalUI
             Terminal.WriteLine();
             yield return Terminal.TypeLine(DialogueFinishedMessage);
             
+            //Wacht totdat de gebruiker op de SkipKey drukt.
             while (Input.GetKeyDown(Globals.SkipKey) == false)
                 yield return null;
 
@@ -117,6 +147,11 @@ namespace TerminalUI
                 .StartDialogue();
         }
 
+        /// <summary>
+        /// Run een commando (deze staan in het dialoogbestand gedefenieerd)
+        /// </summary>
+        /// <param name="command">Het commando dat moet worden gedraait</param>
+        /// <returns>Unity Enumerator</returns>
         public override IEnumerator RunCommand(Command command)
         {
             string[] args = command.text.Split(Globals.Separator);
@@ -147,6 +182,10 @@ namespace TerminalUI
                 .ToArray());
         }
 
+        /// <summary>
+        /// Deze functie regelt de gebruikersinput voor optieselectie.
+        /// </summary>
+        /// <param name="args">de input, opgesplitst in arguments</param>
         private void OnInputReceived(string[] args)
         {
             if (_setCurrentOption == null)
@@ -176,6 +215,10 @@ namespace TerminalUI
             }
         }
 
+        /// <summary>
+        /// Deze functie wordt gebruikt om een optie te kiezen.
+        /// </summary>
+        /// <param name="option">de optie die gekozen moet worden</param>
         private void ChooseOption(int option)
         {
             _setCurrentOption?.Invoke(option);

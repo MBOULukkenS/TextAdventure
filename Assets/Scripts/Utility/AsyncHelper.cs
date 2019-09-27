@@ -5,7 +5,10 @@ using System.Threading.Tasks;
 
 namespace Utility
 {
-    //from https://stackoverflow.com/questions/5095183/how-would-i-run-an-async-taskt-method-synchronously
+    /// <summary>
+    /// Deze klasse helpt met async tasks.
+    /// bron: https://stackoverflow.com/questions/5095183/how-would-i-run-an-async-taskt-method-synchronously
+    /// </summary>
     public static class AsyncHelper
     {
         /// <summary>

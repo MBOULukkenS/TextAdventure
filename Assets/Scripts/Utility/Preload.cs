@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace Utility
 {
+    /// <summary>
+    /// Deze klasse regelt de preload fase van de game.
+    /// </summary>
     public class Preload
     {
         /// <summary>

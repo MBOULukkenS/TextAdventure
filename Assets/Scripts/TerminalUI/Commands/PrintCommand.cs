@@ -5,6 +5,9 @@ using Yarn;
 
 namespace TerminalUI.Commands
 {
+    /// <summary>
+    /// Dit commando print een tekst naar de primaire Terminal.
+    /// </summary>
     [Alias("PrintLine", "Write", "WriteLine")]
     public class PrintCommand : Command
     {

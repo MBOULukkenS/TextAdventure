@@ -4,6 +4,9 @@ using WM2000.Terminal;
 
 namespace TerminalUI.Commands
 {
+    /// <summary>
+    /// Break, of Newline commando voor Yarn.
+    /// </summary>
     [Alias("Newline")]
     public class BrCommand : Command
     {

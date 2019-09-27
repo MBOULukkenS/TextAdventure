@@ -3,6 +3,9 @@ using WM2000.Terminal;
 
 namespace TerminalUI.Commands
 {
+    /// <summary>
+    /// Dit command voegt een separator toe aan de primaire Terminal.
+    /// </summary>
     public class SeparatorCommand : Command
     {
         public override IEnumerator Run(params string[] args)

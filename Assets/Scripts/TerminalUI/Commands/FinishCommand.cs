@@ -3,6 +3,9 @@ using Yarn.Unity;
 
 namespace TerminalUI.Commands
 {
+    /// <summary>
+    /// Dit commando beindigd het spel.
+    /// </summary>
     public class FinishCommand : Command
     {
         public override IEnumerator Run(params string[] args)

@@ -5,6 +5,9 @@ using Utility;
 
 namespace Managers
 {
+    /// <summary>
+    /// Dit object regelt de geluidseffecten in het spel.
+    /// </summary>
     public class SoundSystem : MonoSingleton<SoundSystem>
     {
         public AudioSource AudioSource { get; private set; }
