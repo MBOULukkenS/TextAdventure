@@ -2,7 +2,7 @@
 	{
 		"title": "Start",
 		"tags": "",
-		"body": "Welcome to this test\n\n[[Shortcut test|ShortcutTest]]\n[[Conditional test|ConditionalTest]]\n[[Exit|Exit]]",
+		"body": "Welcome to this test\n\n[[Shortcut test|ShortcutTest]]\n[[Conditional test|ConditionalTest]]\n[[Sound test|SoundTest]]\n[[Exit|Exit]]",
 		"position": {
 			"x": 607,
 			"y": 277
@@ -35,6 +35,16 @@
 		"body": "Okeh bye\n<<finish>>",
 		"position": {
 			"x": 1167,
+			"y": 57
+		},
+		"colorID": 0
+	},
+	{
+		"title": "SoundTest",
+		"tags": "",
+		"body": "Sound Tests\n\n->Play sound\n    Playing sound...\n    <<sound Explosion1>>\n\n[[Start]]",
+		"position": {
+			"x": 1376,
 			"y": 57
 		},
 		"colorID": 0
