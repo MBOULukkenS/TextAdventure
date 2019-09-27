@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using UnityEngine;
 
 namespace Utility
@@ -103,7 +104,9 @@ namespace Utility
         public static T Instance {
             get
             {
-                CreateInstance();
+                if (!CreateInstance())
+                    throw new FileNotFoundException(typeof(T).Name);
+                
                 return _instance;
             }
             protected set => _instance = value;
@@ -111,12 +114,10 @@ namespace Utility
 
         public static bool CreateInstance()
         {
-            bool instanceExists = _instance != null;
-            
-            if (!instanceExists)
-                Resources.Load<T>(typeof(T).Name);
+            if (_instance == null)
+                _instance = Resources.Load<T>(typeof(T).Name);
 
-            return !instanceExists;
+            return _instance != null;
         }
     }
 
