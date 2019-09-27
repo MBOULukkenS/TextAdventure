@@ -16,11 +16,11 @@ namespace Managers
             AudioSource = gameObject.AddComponent<AudioSource>();
         }
 
-        public void PlaySound(string clipName)
+        public void PlaySound(string clipName, int volume = 100)
         {
             AudioClip clipToPlay = GetAudioClipByName(clipName);
             
-            AudioSource.PlayOneShot(clipToPlay);
+            AudioSource.PlayOneShot(clipToPlay, (volume / 100f));
         }
 
         private static AudioClip GetAudioClipByName(string name)
