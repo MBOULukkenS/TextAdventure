@@ -130,12 +130,13 @@ namespace TerminalUI
                         .ToLower()
                         .Equals($"{args[0].ToLower()}command", StringComparison.CurrentCultureIgnoreCase) 
                                 ||
-                                ((AliasAttribute) Attribute.GetCustomAttribute(c.GetType(), typeof(AliasAttribute)))
+                                (((AliasAttribute) Attribute.GetCustomAttribute(c.GetType(), typeof(AliasAttribute)))?
                                 .Aliases
-                                .Any(alias => string.Equals(alias, args[0], StringComparison.CurrentCultureIgnoreCase))
+                                .Any(alias => string.Equals(alias, args[0], StringComparison.CurrentCultureIgnoreCase)) 
+                                ?? false)
                     );
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 Debug.LogWarning($"Command: '{args[0]}' not found!");
                 yield break;
